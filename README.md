@@ -1,8 +1,11 @@
 <img src='https://app.codeship.com/projects/3fc7f200-09b8-0135-65c0-72e222cc42c8/status?branch=master' />
 
+Ruby Version: 2.4.0
+
 To run locally, 
 
 bundle && yarn
+<br/>
 foreman start -f Procfile.dev
 
 (You may have to brew install yarn, gem install bundler, and/or gem install foreman)
