@@ -31,7 +31,7 @@ export default class HelloWorld extends React.Component {
         <hr />
         <form >
           <label htmlFor="name">
-            Say give me five to:
+            Say hello to:
           </label>
           <input
             id="name"
