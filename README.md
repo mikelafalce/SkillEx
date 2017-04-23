@@ -1,16 +1,16 @@
-# README
+
 
 <img src='https://app.codeship.com/projects/3fc7f200-09b8-0135-65c0-72e222cc42c8/status?branch=master' />
 
-Ruby Version: 2.4.0
+# README
 
 To run locally, 
 
-bundle && yarn
+$ bundle && yarn
 <br/>
-foreman start -f Procfile.dev
+$ foreman start -f Procfile.dev
 
-(You may have to brew install chromedriver, brew install yarn, gem install bundler, and/or gem install foreman)
+(You may have to $ gem install foreman)
 
 
 
@@ -23,8 +23,9 @@ Things you may want to cover:
 
 * Ruby version <br/>
 2.4.0
-* System dependencies
-
+* System dependencies <br/>
+yarn  $ brew install yarn
+chromedriver  $ brew install chromedriver
 * Configuration
 
 * Database creation
@@ -32,7 +33,7 @@ Things you may want to cover:
 * Database initialization
 
 * How to run the test suite <br/>
-brew install chromedriver  (for capybara)
+make sure to $ brew install chromedriver  (for capybara)
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
