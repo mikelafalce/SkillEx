@@ -97,6 +97,7 @@ RSpec.configure do |config|
   Kernel.srand config.seed
   # config.profile_examples = 10
 
+  config.include Rails.application.routes.url_helpers
 
 end
 
