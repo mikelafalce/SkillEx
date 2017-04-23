@@ -24,8 +24,8 @@ Things you may want to cover:
 * Ruby version <br/>
 2.4.0
 * System dependencies <br/>
-yarn  $ brew install yarn
-chromedriver  $ brew install chromedriver
+yarn  $ brew install yarn <br/>
+chromedriver  $ brew install chromedriver<br/>
 * Configuration
 
 * Database creation
