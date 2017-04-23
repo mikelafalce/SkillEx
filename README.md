@@ -6,6 +6,7 @@
 
 To run locally, 
 
+$ brew install chromedriver <br/>
 $ bundle && yarn
 <br/>
 $ foreman start -f Procfile.dev
@@ -24,8 +25,8 @@ Things you may want to cover:
 * Ruby version <br/>
 2.4.0
 * System dependencies <br/>
-yarn  $ brew install yarn <br/>
-chromedriver  $ brew install chromedriver<br/>
+yarn <br/> $ brew install yarn <br/>
+chromedriver <br/> $ brew install chromedriver<br/>
 * Configuration
 
 * Database creation
