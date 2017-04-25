@@ -3,6 +3,6 @@ class MessageBroadcastJob < ApplicationJob
 
   def perform(message)
     ActionCable.server.broadcast "messages_#{message.to_user_id}",
-                                 message: message.to_json
+                                 message: message
   end
 end

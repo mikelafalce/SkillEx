@@ -14,7 +14,7 @@
 
     received: function (message) {
       // TODO: get current_user_id from somewhere!
-      var id = message.from_user_id === current_user_id ? message.to_user_id : message.from_user_id
+      var id = message.from_user_id === currentUserId ? message.to_user_id : message.from_user_id
       this.messages[id] = this.messages[id] || []
       this.messages[id].push(message)
 
