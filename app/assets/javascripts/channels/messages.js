@@ -1,6 +1,6 @@
 // TODO: don't invoke when not logged in
 
-//jQuery(document).ready(function () {
+// jQuery(document).ready(function () {
   App.messenger = App.cable.subscriptions.create("MessagesChannel", {
     messages: {},
 
@@ -27,4 +27,4 @@
       this.perform('send_message', {to_user_id: to_user_id, body: body})
     }
   })
-//})
+// })

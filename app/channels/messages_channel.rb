@@ -11,13 +11,26 @@ class MessagesChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def send_message(to_user_id:, body:)
-    message = Message.create!(
-      from_user_id: current_user,
-      to_user_id: to_user_id,
-      body: body
-    )
+  # def send_message(to_user_id, body)
+  #   message = Message.create!(
+  #     from_user_id: current_user,
+  #     to_user_id: to_user_id,
+  #     body: body
+  #   )
 
-    MessageBroadcastJob.perform_later(message)
-  end
+  #   MessageBroadcastJob.perform_later(message)
+  # end
+
+  def send_message(payload) 
+     to_user_id = payload['to_user_id']
+     body = payload['body']
+      message = Message.create!(
+        from_user_id: current_user.id,
+        to_user_id: to_user_id,
+        body: body
+      )
+
+      MessageBroadcastJob.perform_later(message)
+    end
+
 end
