@@ -1,0 +1,47 @@
+<head><link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"></head>
+<div class="text-center">
+<%= form_for(lesson) do |f| %>
+  <% if lesson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+      <ul>
+      <% lesson.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field" style="color:#6396e8">
+    <%= f.label :skill %>
+    <%= f.number_field :skill %>
+  </div>
+
+  <div class="field">
+    <%= f.label :teacher %>
+    <%= f.number_field :teacher %>
+  </div> 
+
+  <div class="field">
+    <%= f.label :student %>
+    <%= f.number_field :student %>
+  </div> 
+
+  <div class="field">
+    <%= f.label :teacher_rating_student %>
+    <%= f.number_field :teacher_rating_student %>
+  </div> 
+
+  <div class="field">
+    <%= f.label :student_rating_teacher %>
+    <%= f.number_field :student_rating_teacher %>
+  </div> 
+
+  
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>

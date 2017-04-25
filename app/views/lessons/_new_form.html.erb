@@ -1,0 +1,47 @@
+<head><link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"></head>
+<div class="text-center">
+<%= form_for(lesson) do |f| %>
+  <% if lesson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+      <ul>
+      <% lesson.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field" >
+    <%= f.label :skill %>
+    <%= f.text_field :skill %>
+  </div>
+
+  <div class="field">
+    <%= f.label :teacher %>
+    <%= f.text_field :teacher %>
+  </div> 
+
+  <div class="field">
+    <%= f.label :student %>
+    <%= f.text_field :student %>
+  </div> 
+
+  <div class="field" >
+    <%= f.label :start_time %>
+    <%= f.time_select :start_time, ampm: true, minute_step: 15 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :requested_at %>
+    <%= f.time_select :start_time, ampm: true, minute_step: 15 %>
+  </div> 
+
+
+   <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
