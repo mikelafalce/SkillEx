@@ -6,17 +6,17 @@
 <div class="text-center" style="color:#6396e8;">
 <p>
   <strong>Skill</strong>
-  <%= @lesson.skill %>
+  <%= @lesson.skill.title %>
 </p>
 
 <p>
   <strong>Teacher</strong>
-  <%= @lesson.teacher %>
+  <%= @lesson.teacher.first_name %> <%= @lesson.teacher.last_name %>
 </p>
 
 <p>
   <strong>Student</strong>
-  <%= @lesson.student %>
+  <%= @lesson.student.first_name %> <%= @lesson.student.last_name %>
 </p>
 
 <p>
@@ -29,7 +29,7 @@
   <%= @lesson.confirmed_at %>
 </p>
 
-
+<%= link_to 'Confirm', confirm_lesson_path(@lesson), {style: "color: #6396e8"} if @lesson.confirmed_at == nil && current_user == @lesson.teacher%> |
 <%= link_to 'Edit', edit_lesson_path(@lesson), {style: "color: #6396e8"} %> |
 <%= link_to 'Back', lessons_path, {style: "color: #6396e8"} %>
 </div>
