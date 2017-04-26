@@ -1,1 +1,14 @@
-Welcome to SkillEx
+Welcome to SkillEx <br/><br/>
+
+<%if @requested_lessons.count > 0%>
+You have <%= @requested_lessons.count %> requested lessons <br/>
+  <%@requested_lessons.each do |lesson|%>
+    start time: <%=lesson.start_time%> <br/>
+    end time: <%=lesson.end_time%> <br/>
+    student: <%=lesson.student.first_name%> <%=lesson.student.last_name%>
+    <%=link_to 'View Lesson', lesson_path(lesson)%> <br/>
+  <%end%>
+<%end%>
+
+
+

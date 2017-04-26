@@ -14,31 +14,32 @@
   <% end %>
 
 
-  <div class="field" >
-    <%= f.label :skill %>
-    <%= f.text_field :skill %>
+  <div class="label" >
+    Skill:
+    <%= @skill.title %>
   </div>
 
-  <div class="field">
-    <%= f.label :teacher %>
-    <%= f.text_field :teacher %>
+  <div class="label">
+    Teacher:
+    <%= @skill.teacher.first_name %> <%= @skill.teacher.last_name %>
   </div> 
 
-  <div class="field">
-    <%= f.label :student %>
-    <%= f.text_field :student %>
+  <div class="label">
+    Student:
+    <%= current_user.first_name %> <%= current_user.last_name %>
   </div> 
 
   <div class="field" >
     <%= f.label :start_time %>
-    <%= f.time_select :start_time, ampm: true, minute_step: 15 %>
+    <%= f.datetime_select :start_time, ampm: true, minute_step: 15 %>
   </div>
 
   <div class="field">
-    <%= f.label :requested_at %>
-    <%= f.time_select :start_time, ampm: true, minute_step: 15 %>
+    <%= f.label :end_time %>
+    <%= f.datetime_select :end_time, ampm: true, minute_step: 15 %>
   </div> 
 
+  <%= hidden_field_tag 'skill', @skill.id %>
 
    <div class="actions">
     <%= f.submit %>
