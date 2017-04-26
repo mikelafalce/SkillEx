@@ -6,27 +6,22 @@
 
 To run locally, 
 
+$ brew install yarn <br/>
 $ brew install chromedriver <br/>
-$ bundle && yarn
-<br/>
+$ brew install imagemagick <br/> <br/>
+$ bundle && yarn <br/>
+$ rails db:create && rails db:migrate && rails db:seed <br/>
 $ foreman start -f Procfile.dev
 
-(You may have to $ gem install foreman)
+(You may have to $ gem install foreman) <br/>
 
-
-
-
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
 
 * Ruby version <br/>
 2.4.0
 * System dependencies <br/>
 yarn <br/> $ brew install yarn <br/>
 chromedriver <br/> $ brew install chromedriver<br/>
+imagemagick <br/> $ brew install imagemagick<br/>
 * Configuration
 
 * Database creation
