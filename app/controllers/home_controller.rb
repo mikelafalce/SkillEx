@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   def index
-    @current_user_id = current_user.id
+    if current_user
+      @current_user_id = current_user.id
+    end
   end
 end
 
