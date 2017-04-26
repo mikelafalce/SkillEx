@@ -14,6 +14,7 @@
 !/tmp/.keep
 /spec/examples.txt
 .DS_Store
+/public/uploads
 
 
 /node_modules
