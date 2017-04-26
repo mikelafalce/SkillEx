@@ -8,7 +8,9 @@ You have <%= @requested_lessons.count %> requested lessons <br/>
     student: <%=lesson.student.first_name%> <%=lesson.student.last_name%>
     <%=link_to 'View Lesson', lesson_path(lesson)%> <br/>
   <%end%>
+  <%end%>
+
+ <% if current_user.avatar.url %>
+ 	thumb: <%= image_tag current_user.avatar.thumb.url %> <br/>
+ 	normal: <%= image_tag current_user.avatar.normal.url %>
 <%end%>
-
-
-

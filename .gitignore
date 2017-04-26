@@ -13,6 +13,9 @@
 !/log/.keep
 !/tmp/.keep
 /spec/examples.txt
+.DS_Store
+/public/uploads
+
 
 /node_modules
 /yarn-error.log
