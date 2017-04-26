@@ -10,7 +10,7 @@ You have <%= @requested_lessons.count %> requested lessons <br/>
   <%end%>
   <%end%>
 
- <% if current_user %>
+ <% if current_user && current_user.avatar.url %>
  	thumb: <%= image_tag current_user.avatar.thumb.url %> <br/>
  	normal: <%= image_tag current_user.avatar.normal.url %>
 <%end%>
