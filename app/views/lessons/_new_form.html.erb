@@ -35,8 +35,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :end_time %>
-    <%= f.datetime_select :end_time, ampm: true, minute_step: 15 %>
+    <%= f.label :hours %>
+    <%= f.select :hours, (1..3) %>
   </div> 
 
   <%= hidden_field_tag 'skill', @skill.id %>
