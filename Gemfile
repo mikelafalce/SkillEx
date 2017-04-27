@@ -56,6 +56,7 @@ group :development, :test do
   gem 'turn', :require => false
   gem 'factory_girl_rails'
   gem 'guard-rspec'
+  gem 'pry'
 end
 
 group :development do

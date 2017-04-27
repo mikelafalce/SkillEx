@@ -98,6 +98,7 @@ RSpec.configure do |config|
   # config.profile_examples = 10
 
   config.include Rails.application.routes.url_helpers
+  config.include Warden::Test::Helpers
 
 end
 

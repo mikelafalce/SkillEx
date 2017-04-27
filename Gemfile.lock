@@ -290,6 +290,7 @@ DEPENDENCIES
   mini_magick
   mini_racer
   pg (~> 0.18)
+  pry
   puma (~> 3.7)
   rails (~> 5.1.0.rc1)
   rails-controller-testing
