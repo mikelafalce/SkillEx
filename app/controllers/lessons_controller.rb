@@ -25,7 +25,11 @@ class LessonsController < ApplicationController
     else 
       @lesson.confirmed_at = DateTime.now 
       @lesson.save
+      UserMailer.confirm_lesson(@lesson).deliver_now!
       redirect_to @lesson, notice: 'Lesson was successfully confirmed.'
+
+      
+  
     end
   end
 
@@ -40,7 +44,7 @@ class LessonsController < ApplicationController
     respond_to do |format|
       if @lesson.teacher == current_user
         format.html { redirect_to @skill, notice: 'You cannot learn your own skill.' }
-      elsif @lesson.start_time > DateTime.now
+      elsif @lesson.start_time < DateTime.now
         format.html { redirect_to @skill, notice: 'You cannot schedule a lesson in the past.' }
       elsif @lesson.save
         format.html { redirect_to @lesson, notice: 'Lesson was successfully requested.' }
