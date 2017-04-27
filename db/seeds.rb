@@ -20,7 +20,7 @@ Skill.all.each do |skill|
     teacher_rating_student: rand(1..5), 
     student_rating_teacher: rand(1..5), 
     start_time: some_time, 
-    end_time: (some_time + (60*60)), 
+    hours: rand(1..3), 
     requested_at: (some_time - (60*60*24)*rand(1..3)), 
     confirmed_at: (some_time - (5*60*60)),
     teacher_id: skill.teacher.id,
