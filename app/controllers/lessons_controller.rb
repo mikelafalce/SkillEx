@@ -1,15 +1,15 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy, :confirm]
   before_action :authenticate_user!
-  
+
   def index
     @lessons = Lesson.all
   end
 
   def my_lessons
-    @my_lessons = Lesson.where(teacher_id: current_user.id) 
+    @my_lessons = Lesson.where(teacher_id: current_user.id)
   end
-  
+
   def show
   end
 
@@ -18,18 +18,18 @@ class LessonsController < ApplicationController
     @skill = Skill.find_by(id: params[:skill])
   end
 
-  
+
   def confirm
     if @lesson.teacher != current_user
       redirect_to @lesson, notice: 'You can only confirm lessons you teach.'
-    else 
-      @lesson.confirmed_at = DateTime.now 
+    else
+      @lesson.confirmed_at = DateTime.now
       @lesson.save
       redirect_to @lesson, notice: 'Lesson was successfully confirmed.'
     end
   end
 
-   
+
   def create
     @lesson = Lesson.new(lesson_params)
     @lesson.skill = Skill.find_by(id: params[:skill])
@@ -47,7 +47,7 @@ class LessonsController < ApplicationController
     end
   end
 
-  
+
   def update
     respond_to do |format|
       if @lesson.teacher_id != current_user.id
@@ -62,7 +62,7 @@ class LessonsController < ApplicationController
     end
   end
 
-  
+
   def destroy
     @lesson.destroy
     respond_to do |format|
