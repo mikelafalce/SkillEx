@@ -32,12 +32,17 @@ class LessonsController < ApplicationController
    
   def create
     @lesson = Lesson.new(lesson_params)
-    @lesson.skill = Skill.find_by(id: params[:skill])
+    @skill = Skill.find_by(id: params[:skill])
+    @lesson.skill = @skill
     @lesson.teacher = @lesson.skill.teacher
     @lesson.student = current_user
     @lesson.requested_at = DateTime.now
     respond_to do |format|
-      if @lesson.save
+      if @lesson.teacher == current_user
+        format.html { redirect_to @skill, notice: 'You cannot learn your own skill.' }
+      elsif @lesson.start_time > DateTime.now
+        format.html { redirect_to @skill, notice: 'You cannot schedule a lesson in the past.' }
+      elsif @lesson.save
         format.html { redirect_to @lesson, notice: 'Lesson was successfully requested.' }
         format.json { render :show, status: :created, location: @lesson }
       else
@@ -77,7 +82,7 @@ class LessonsController < ApplicationController
     end
 
     def lesson_params
-      whitelisted = params.require(:lesson).permit(:skill, :teacher, :student, :teacher_rating_student, :student_rating_teacher, :start_time, :end_time, :requested_at, :confirmed_at)
+      whitelisted = params.require(:lesson).permit(:skill, :teacher, :student, :teacher_rating_student, :student_rating_teacher, :start_time, :end_time, :requested_at, :confirmed_at, :hours)
       whitelisted.merge(teacher_id: current_user.id.to_i)
     end
 end

@@ -10,7 +10,7 @@ class CreateLessons < ActiveRecord::Migration[5.1]
       t.integer :student_rating_teacher
       
       t.datetime :start_time
-      t.datetime :end_time
+      t.integer :hours
       t.datetime :requested_at
       t.datetime :confirmed_at
 
