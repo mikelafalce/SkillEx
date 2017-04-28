@@ -1,3 +1,8 @@
+
+<script>
+  var currentUserId = <%= @current_user_id %>;
+</script>
+
 Welcome to SkillEx <br/><br/>
 
 <%if @requested_lessons.count > 0%>
@@ -14,3 +19,4 @@ You have <%= @requested_lessons.count %> requested lessons <br/>
  	thumb: <%= image_tag current_user.avatar.thumb.url %> <br/>
  	normal: <%= image_tag current_user.avatar.normal.url %>
 <%end%>
+
