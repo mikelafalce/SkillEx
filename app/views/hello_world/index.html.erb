@@ -2,5 +2,6 @@
 <script>
   var currentUserId = <%= @current_user_id %>;
 </script>
-<%= react_component("Messages", props: {user: current_user.id}, prerender: false) %>
+<%= react_component("Messages", props: {}, prerender: false) %>
 
+<!-- user: current_user.id -->

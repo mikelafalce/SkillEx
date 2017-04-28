@@ -7,7 +7,6 @@ var MessengerWindow = React.createClass({
      };
    },
   componentDidMount: function () {
-    console.log(App)
     document.addEventListener('messenger', this._listenToMessenger)
   },
 
@@ -17,15 +16,19 @@ var MessengerWindow = React.createClass({
 
   _listenToMessenger: function () {
     this.setState({ messages: App.messenger ? App.messenger.messages : [] })
-    debugger
   },
 
   render: function () {
-    const userMessages = this.state.messages[this.props.user]
+    const userMessages = this.state.messages
+    // [this.props.user]
+    // debugger
     return (
       <div>
-        { userMessages && userMessages.map(function(message) {
-          return <div>{message.body}</div>
+        {Object.keys(userMessages).map(function(userId) {
+          const messagesForUser = userMessages[userId]
+          return messagesForUser.map(function(message) {  
+            return <div>{message.body} from {message.from_user.email} to {message.to_user.email}</div>
+          })
         })}
       </div>
     )

@@ -1,0 +1,10 @@
+<h1><%= @skill.title %></h1>
+<div>Teacher: <%= @teacher.first_name %></div> <br>
+
+<div>Description: <%= @skill.description %></div>
+
+
+<%= link_to 'Edit', edit_skill_path(@skill) if current_user == @teacher %> |
+<%= link_to 'Back', skills_path %> <br>
+
+<%= link_to 'Request a Lesson', new_lesson_path(skill: @skill) %>
