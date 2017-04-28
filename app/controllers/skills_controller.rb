@@ -1,9 +1,14 @@
+
 class SkillsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_skill, only: [:show, :edit, :update, :destroy, :join, :leave]
 
   def index
-    @skills = Skill.all
+    if params[:search]
+      @skills = Skill.search(params[:search])
+    else
+      @skills = Skill.all
+    end
   end
 
   def new
@@ -54,6 +59,6 @@ class SkillsController < ApplicationController
   end
 
   def skill_params
-    params.require(:skill).permit(:title, :description)
+    params.require(:skill).permit(:title, :description, :search)
   end
 end

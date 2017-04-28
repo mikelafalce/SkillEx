@@ -10,15 +10,15 @@
       <a class="navbar-brand" href="/">SkillEx</a>
     </div>
 
-    <form class="navbar-form navbar-left" role="search" action="/">
-      <div class="form-group">
-        <input type="text" name="q" class="form-control" size="25" placeholder="what do you want to learn?">
-      </div>
-      <button type="submit" class="btn btn-default">Find a Skill</button>
-    </form>
+<%= form_tag skills_path, method: :get do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search", name: nil %>
+<% end %>
 
     <ul class='nav navbar-nav navbar-right'>
       <% if current_user %>
+        <li><%= link_to 'All Skills', skills_path %></li>
+        <li><%= link_to 'My Lessons', my_lessons_path %></li>
         <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to 'Register', new_user_registration_path %></li>

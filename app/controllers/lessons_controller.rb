@@ -7,7 +7,8 @@ class LessonsController < ApplicationController
   end
 
   def my_lessons
-    @my_lessons = Lesson.where(teacher_id: current_user.id)
+    @my_lessons_as_teacher = current_user.lessons_as_teacher
+    @my_lessons_as_student = current_user.lessons_as_student
   end
 
   def show
@@ -25,7 +26,11 @@ class LessonsController < ApplicationController
     else
       @lesson.confirmed_at = DateTime.now
       @lesson.save
+      UserMailer.confirm_lesson(@lesson).deliver_now!
       redirect_to @lesson, notice: 'Lesson was successfully confirmed.'
+
+      
+  
     end
   end
 
@@ -40,7 +45,7 @@ class LessonsController < ApplicationController
     respond_to do |format|
       if @lesson.teacher == current_user
         format.html { redirect_to @skill, notice: 'You cannot learn your own skill.' }
-      elsif @lesson.start_time > DateTime.now
+      elsif @lesson.start_time < DateTime.now
         format.html { redirect_to @skill, notice: 'You cannot schedule a lesson in the past.' }
       elsif @lesson.save
         format.html { redirect_to @lesson, notice: 'Lesson was successfully requested.' }
@@ -82,7 +87,7 @@ class LessonsController < ApplicationController
     end
 
     def lesson_params
-      whitelisted = params.require(:lesson).permit(:skill, :teacher, :student, :teacher_rating_student, :student_rating_teacher, :start_time, :end_time, :requested_at, :confirmed_at, :hours)
+      whitelisted = params.require(:lesson).permit(:skill, :teacher, :student, :teacher_rating_student, :student_rating_teacher, :start_time, :hours, :requested_at, :confirmed_at)
       whitelisted.merge(teacher_id: current_user.id.to_i)
     end
 end
