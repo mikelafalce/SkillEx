@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20170426181403) do
     t.integer "teacher_rating_student"
     t.integer "student_rating_teacher"
     t.datetime "start_time"
-    t.datetime "end_time"
+    t.integer "hours"
     t.datetime "requested_at"
     t.datetime "confirmed_at"
     t.datetime "created_at", null: false

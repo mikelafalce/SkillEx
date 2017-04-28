@@ -7,7 +7,8 @@ class LessonsController < ApplicationController
   end
 
   def my_lessons
-    @my_lessons = Lesson.where(teacher_id: current_user.id)
+    @my_lessons_as_teacher = current_user.lessons_as_teacher
+    @my_lessons_as_student = current_user.lessons_as_student
   end
 
   def show
@@ -77,7 +78,7 @@ class LessonsController < ApplicationController
     end
 
     def lesson_params
-      whitelisted = params.require(:lesson).permit(:skill, :teacher, :student, :teacher_rating_student, :student_rating_teacher, :start_time, :end_time, :requested_at, :confirmed_at)
+      whitelisted = params.require(:lesson).permit(:skill, :teacher, :student, :teacher_rating_student, :student_rating_teacher, :start_time, :hours, :requested_at, :confirmed_at)
       whitelisted.merge(teacher_id: current_user.id.to_i)
     end
 end

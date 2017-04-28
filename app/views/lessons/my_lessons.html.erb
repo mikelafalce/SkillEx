@@ -19,11 +19,11 @@
   </thead>
 
   <tbody>
-    <% @my_lessons.each do |lesson| %>
+    <% @my_lessons_as_teacher.each do |lesson| %>
       <tr style="color:#6396e8">
-        <td><%= lesson.skill %></td>
-        <td><%= lesson.teacher %></td>
-        <td><%= lesson.student %></td>
+        <td><%= lesson.skill.title %></td>
+        <td><%= lesson.teacher.first_name %> <%= lesson.teacher.last_name %></td>
+        <td><%= lesson.student.first_name %> <%= lesson.student.last_name %></td>
         <td><%= lesson.requested_at %></td>
         <td><%= lesson.confirmed_at %></td>
         <td><%= link_to 'Lesson Details', lesson, {style: "color: #6396e8"} %></td>
@@ -31,6 +31,19 @@
         <!-- <td><%= link_to 'Cancel Lesson', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
+    <% @my_lessons_as_student.each do |lesson| %>
+      <tr style="color:#6396e8">
+        <td><%= lesson.skill.title %></td>
+        <td><%= lesson.teacher.first_name %> <%= lesson.teacher.last_name %></td>
+        <td><%= lesson.student.first_name %> <%= lesson.student.last_name %></td>
+        <td><%= lesson.requested_at %></td>
+        <td><%= lesson.confirmed_at %></td>
+        <td><%= link_to 'Lesson Details', lesson, {style: "color: #6396e8"} %></td>
+        <td><%= link_to 'Edit Lesson', edit_lesson_path(lesson), {style: "color: #6396e8"} %></td>
+        <!-- <td><%= link_to 'Cancel Lesson', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </tr>
+    <% end %>
+
   </tbody>
 </table>
 
