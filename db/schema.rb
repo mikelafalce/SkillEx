@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170427184426) do
+=======
+
+ActiveRecord::Schema.define(version: 20170426181403) do
+>>>>>>> 4d3d206b2a42a2a4bd678aeae0a092f0c9109f3e
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +38,7 @@ ActiveRecord::Schema.define(version: 20170427184426) do
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id"
   end
 
+<<<<<<< HEAD
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
     t.string "searchable_type"
@@ -39,6 +46,16 @@ ActiveRecord::Schema.define(version: 20170427184426) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+=======
+  create_table "messages", force: :cascade do |t|
+    t.bigint "from_user_id", null: false
+    t.bigint "to_user_id", null: false
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_user_id"], name: "index_messages_on_from_user_id"
+    t.index ["to_user_id"], name: "index_messages_on_to_user_id"
+>>>>>>> 4d3d206b2a42a2a4bd678aeae0a092f0c9109f3e
   end
 
   create_table "skills", force: :cascade do |t|
@@ -70,4 +87,6 @@ ActiveRecord::Schema.define(version: 20170427184426) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "messages", "users", column: "from_user_id"
+  add_foreign_key "messages", "users", column: "to_user_id"
 end

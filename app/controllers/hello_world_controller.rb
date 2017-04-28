@@ -1,5 +1,8 @@
 class HelloWorldController < ApplicationController
+  # before_action :authenticate_user!
   def index
-    @hello_world_props = { name: "Stranger" }
+    if current_user
+      @current_user_id = current_user.id
+    end
   end
 end
