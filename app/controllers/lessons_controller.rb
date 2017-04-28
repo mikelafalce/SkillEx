@@ -26,19 +26,28 @@ class LessonsController < ApplicationController
     else
       @lesson.confirmed_at = DateTime.now
       @lesson.save
+      UserMailer.confirm_lesson(@lesson).deliver_now!
       redirect_to @lesson, notice: 'Lesson was successfully confirmed.'
+
+      
+  
     end
   end
 
 
   def create
     @lesson = Lesson.new(lesson_params)
-    @lesson.skill = Skill.find_by(id: params[:skill])
+    @skill = Skill.find_by(id: params[:skill])
+    @lesson.skill = @skill
     @lesson.teacher = @lesson.skill.teacher
     @lesson.student = current_user
     @lesson.requested_at = DateTime.now
     respond_to do |format|
-      if @lesson.save
+      if @lesson.teacher == current_user
+        format.html { redirect_to @skill, notice: 'You cannot learn your own skill.' }
+      elsif @lesson.start_time < DateTime.now
+        format.html { redirect_to @skill, notice: 'You cannot schedule a lesson in the past.' }
+      elsif @lesson.save
         format.html { redirect_to @lesson, notice: 'Lesson was successfully requested.' }
         format.json { render :show, status: :created, location: @lesson }
       else
