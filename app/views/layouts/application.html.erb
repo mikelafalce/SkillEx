@@ -6,20 +6,27 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' />
+    <!-- https://bootswatch.com/simplex/ -->
+    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css' />
+    <style href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></style>
   </head>
 
   <body>
     <nav>
-     <% if current_user %>
-       <p>Welcome, <%= current_user.first_name %>!
-       <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-     <% else %>
-       <%= link_to 'Register', new_user_registration_path %>
-       <%= link_to 'Login', new_user_session_path %>
-     <% end %>
+      <%= render 'layouts/header' %>
+      <% if current_user %>
+        <p>Welcome, <%= current_user.first_name %>! </p>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Register', new_user_registration_path %>
+        <%= link_to 'Login', new_user_session_path %>
+      <% end %>
     </nav>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class='container'>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>
