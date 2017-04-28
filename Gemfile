@@ -15,13 +15,16 @@ gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', github: "rails/sass-rails"
 
+
+gem "letter_opener", :group => :development
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
 gem 'devise'
-
+gem 'image_magick'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -53,6 +56,7 @@ group :development, :test do
   gem 'turn', :require => false
   gem 'factory_girl_rails'
   gem 'guard-rspec'
+  gem 'pry'
 end
 
 group :development do
