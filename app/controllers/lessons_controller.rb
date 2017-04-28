@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy, :confirm, :lesson_rating]
   before_action :authenticate_user!
-  skip_before_action :need_rating, only: [:lesson_rating]
+  skip_before_action :need_rating, only: [:lesson_rating, :add_rating]
   def index
     @lessons = Lesson.all
   end
@@ -33,8 +33,15 @@ class LessonsController < ApplicationController
       UserMailer.confirm_lesson(@lesson).deliver_now!
       redirect_to @lesson, notice: 'Lesson was successfully confirmed.'
 
-      
   
+    end
+  end
+
+  def add_rating
+    if current_user == @lesson.teacher
+      @lesson.teacher_rating_student = params[:rating]
+      binding.pry
+      @lesson.save
     end
   end
 
@@ -91,7 +98,7 @@ class LessonsController < ApplicationController
     end
 
     def lesson_params
-      whitelisted = params.require(:lesson).permit(:skill, :teacher, :student, :teacher_rating_student, :student_rating_teacher, :start_time, :hours, :requested_at, :confirmed_at, :teacher_reviewing_student, :student_reviewing_teacher)
+      whitelisted = params.require(:lesson).permit(:skill, :teacher, :student, :teacher_rating_student, :student_rating_teacher, :start_time, :hours, :requested_at, :confirmed_at, :teacher_reviewing_student, :student_reviewing_teacher, :rating)
       whitelisted.merge(teacher_id: current_user.id.to_i)
     end
 end
