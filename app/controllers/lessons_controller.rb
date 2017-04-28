@@ -1,9 +1,13 @@
 class LessonsController < ApplicationController
-  before_action :set_lesson, only: [:show, :edit, :update, :destroy, :confirm]
+  before_action :set_lesson, only: [:show, :edit, :update, :destroy, :confirm, :lesson_rating]
   before_action :authenticate_user!
-
+  skip_before_action :need_rating, only: [:lesson_rating]
   def index
     @lessons = Lesson.all
+  end
+
+  def lesson_rating
+
   end
 
   def my_lessons
@@ -87,7 +91,7 @@ class LessonsController < ApplicationController
     end
 
     def lesson_params
-      whitelisted = params.require(:lesson).permit(:skill, :teacher, :student, :teacher_rating_student, :student_rating_teacher, :start_time, :hours, :requested_at, :confirmed_at)
+      whitelisted = params.require(:lesson).permit(:skill, :teacher, :student, :teacher_rating_student, :student_rating_teacher, :start_time, :hours, :requested_at, :confirmed_at, :teacher_reviewing_student, :student_reviewing_teacher)
       whitelisted.merge(teacher_id: current_user.id.to_i)
     end
 end

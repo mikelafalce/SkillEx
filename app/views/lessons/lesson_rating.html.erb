@@ -1,0 +1,36 @@
+<head><link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"></head>
+
+<p id="notice"><%= notice %></p>
+
+<h1 class="text-center" style="color:#6396e8; font-family:Ubuntu;">My Lesson</h1>
+<div class="text-center" style="color:#6396e8;">
+<p>
+  <strong>Skill</strong>
+  <%= @lesson.skill.title %>
+</p>
+
+<p>
+  <strong>Start Time</strong>
+  <%= @lesson.start_time %>
+</p>
+
+<p>
+  <strong>Teacher</strong>
+  <%= @lesson.teacher.first_name %> <%= @lesson.teacher.last_name %>
+</p>
+
+<p>
+  <strong>Student</strong>
+  <%= @lesson.student.first_name %> <%= @lesson.student.last_name %>
+</p>
+
+<p>
+  <strong>Rate Your Experience</strong>
+  # radio buttons?<input></input>
+</p>
+
+
+
+
+<%= link_to 'Back', lessons_path, {style: "color: #6396e8"} %>
+</div>
