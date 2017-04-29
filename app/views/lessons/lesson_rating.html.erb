@@ -27,15 +27,7 @@
 <p>
   <strong>Rate Your Experience</strong>
   
-  <%= form_tag( { :action => add_rating_path }, :multipart => true ) %>
-     <%= radio_button :lesson, :rating, :tag_value, options %>
-     <%= radio_button :lesson, :rating, :tag_value, options %>
-     <%= radio_button :lesson, :rating, :tag_value, options %>
-     <%= radio_button :lesson, :rating, :tag_value, options %>
-     <%= radio_button :lesson, :rating, :tag_value, options %>
-     <%= submit_tag( "Upload file" ) %>
-  <%= end_form_tag %>
-
+  <%= render 'rating_form', lesson: @lesson %>
 
 
 </p>

@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  before_action :set_lesson, only: [:show, :edit, :update, :destroy, :confirm, :lesson_rating]
+  before_action :set_lesson, only: [:show, :edit, :update, :destroy, :confirm, :lesson_rating, :add_rating]
   before_action :authenticate_user!
   skip_before_action :need_rating, only: [:lesson_rating, :add_rating]
   def index
@@ -7,7 +7,7 @@ class LessonsController < ApplicationController
   end
 
   def lesson_rating
-
+    @skill = @lesson.skill
   end
 
   def my_lessons
@@ -39,9 +39,13 @@ class LessonsController < ApplicationController
 
   def add_rating
     if current_user == @lesson.teacher
-      @lesson.teacher_rating_student = params[:rating]
-      binding.pry
+      @lesson.teacher_rating_student = lesson_params[:rating].to_i
       @lesson.save
+      redirect_to root_path
+    elsif current_user == @lesson.student
+      @lesson.student_rating_teacher = lesson_params[:rating].to_i
+      @lesson.save
+      redirect_to root_path
     end
   end
 

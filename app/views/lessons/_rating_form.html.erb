@@ -1,0 +1,65 @@
+<%= form_for(lesson, url: add_rating_path) do |f| %>
+  <% if lesson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+      <ul>
+      <% lesson.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="label" >
+    Skill:
+    <%= @skill.title %>
+  </div>
+
+  <div class="label">
+    Teacher:
+    <%= @skill.teacher.first_name %> <%= @skill.teacher.last_name %>
+  </div> 
+
+  <div class="label">
+    Student:
+    <%= lesson.student.first_name %> <%= lesson.student.last_name %>
+  </div> 
+
+  <div class="label">
+    Start Time:
+    <%= lesson.start_time %>
+  </div> 
+
+  <div class="label">
+   Hours:
+    <%= lesson.hours %>
+  </div>
+
+  <div class="field" >
+
+    <%= f.radio_button(:rating, "1") %>
+    <%= f.label("1") %>
+
+    <%= f.radio_button(:rating, "2") %>
+    <%= f.label("2") %>
+
+    <%= f.radio_button(:rating, "3") %>
+    <%= f.label("3") %>
+
+    <%= f.radio_button(:rating, "4") %>
+    <%= f.label("4") %>
+
+    <%= f.radio_button(:rating, "5") %>
+    <%= f.label("5") %>
+  </div>
+
+
+
+  <%= hidden_field_tag 'skill', @skill.id %>
+
+   <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
