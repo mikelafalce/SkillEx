@@ -3,7 +3,8 @@ import React from "react"
 var MessengerWindow = React.createClass({
   getInitialState: function() {
      return {
-       messages: []
+       messages: [],
+       convo: false
      };
    },
   componentDidMount: function () {
@@ -18,18 +19,25 @@ var MessengerWindow = React.createClass({
     this.setState({ messages: App.messenger ? App.messenger.messages : [] })
   },
 
+  _handleClick: function () {
+    this.setState({
+      convo: true
+    })
+  },
+
   render: function () {
     const userMessages = this.state.messages
     // [this.props.user]
     // debugger
     return (
-      <div>
-        {Object.keys(userMessages).map(function(userId) {
-          const messagesForUser = userMessages[userId]
-          return messagesForUser.map(function(message) {  
-            return <div>{message.body} from {message.from_user.email} to {message.to_user.email}</div>
-          })
-        })}
+      <div onClick={this._handleClick}>
+              {Object.keys(userMessages).map(function(userId) {
+                const messagesForUser = userMessages[userId]
+                const test = messagesForUser.map(function(message) {  
+                  return <div>{message.body} from {message.from_user.first_name} to {message.to_user.first_name}</div>
+                })
+                return test[test.length - 1]
+              })}
       </div>
     )
   }
