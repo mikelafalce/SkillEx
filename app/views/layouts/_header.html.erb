@@ -17,7 +17,9 @@
         <%= text_field_tag :search, params[:search] %>
         <%= submit_tag "Search", name: nil %>
       <% end %>
+
       <% if current_user %>
+        <li>You have: <%= current_user.points %> <%= current_user.points == 1 ? 'Point' : 'Points' %></li>
         <li><%= link_to 'All Skills', skills_path %></li>
         <li><%= link_to 'My Skills', my_skills_path %></li>
         <li><%= link_to 'My Upcoming Lessons', upcoming_lessons_path %></li>

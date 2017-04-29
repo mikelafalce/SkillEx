@@ -1,33 +1,23 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<%= form_tag skills_path, method: :get do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search", name: nil %>
+<% end %><br><br>
+
 <h1  style='color:#6396e8;' align="center">List of Skills</h1><br><br>
 
-<table>
-  <thead>
-    <tr>
-      <th style="padding:0 30px 0 30px;" ></th>
-      <th style="font-size:30px; padding:0 30px 0 30px;">Title</th>
-      <th style="font-size:30px; padding:0 30px 0 30px;">Description</th> 
-
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <%= form_tag skills_path, method: :get do %>
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag "Search", name: nil %>
-    <% end %><br><br>
-    <% @skills.each do |skill| %>
-      <tr>
-        <td style="padding:0 30px 0 30px;"><%= image_tag skill.avatar.thumb.url if skill.avatar.url %></td>
-        <td style="padding:0 30px 0 30px;"><%= skill.title %></td>
-        <td style="padding:0 30px 0 30px;"><%= skill.description %></td>
-        <td  style="  padding:0 30px 0 30px;"><%= link_to 'View', skill %></td>
-        <td style="padding:0 30px 0 30px;"><%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %></td>
-        <td style="padding:0 30px 0 30px;"><%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @skills.each do |skill| %>
+  <div class="w3-container">
+    <div class="w3-panel w3-card" style="padding-bottom:8px; padding-top:4px; background-color: white">
+      <div class="row">
+        <div class="col-sm-4"><div align='left'><%= image_tag skill.avatar.thumb.url if skill.avatar.url %></div></div>
+        <div class="col-sm-4"><h5><%= skill.title %></h5><br/><%= skill.description %><br/></div>
+        <div class="col-sm-4"><%= link_to 'View', skill %> <%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %></div>
+      </div> 
+    </div>
+  </div>
+<% end %>
 
 <br>
 <div align="center">
