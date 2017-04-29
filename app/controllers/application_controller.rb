@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     if unrated_teacher_lessons && unrated_teacher_lessons.count > 0
       redirect_to lesson_rating_path(unrated_teacher_lessons.first)
     elsif unrated_student_lessons && unrated_student_lessons.count > 0
-      redirect_to lesson_rating_path(unrated_teacher_lessons.first)
+      redirect_to lesson_rating_path(unrated_student_lessons.first)
     end
   end
 
