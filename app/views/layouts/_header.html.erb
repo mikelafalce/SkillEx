@@ -8,14 +8,15 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">SkillEx</a>
+
     </div>
 
-<%= form_tag skills_path, method: :get do %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search", name: nil %>
-<% end %>
 
     <ul class='nav navbar-nav navbar-right'>
+      <%= form_tag skills_path, method: :get do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", name: nil %>
+      <% end %>
       <% if current_user %>
         <li><%= link_to 'All Skills', skills_path %></li>
         <li><%= link_to 'My Skills', my_skills_path %></li>

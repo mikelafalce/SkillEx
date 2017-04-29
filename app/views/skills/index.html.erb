@@ -1,4 +1,4 @@
-<h1 align="center">List of Skills</h1><br><br><br>
+<h1  style='color:#6396e8;' align="center">List of Skills</h1><br><br>
 
 <table>
   <thead>
@@ -12,12 +12,16 @@
   </thead>
 
   <tbody>
+    <%= form_tag skills_path, method: :get do %>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", name: nil %>
+    <% end %><br><br>
     <% @skills.each do |skill| %>
       <tr>
         <td style="padding:0 30px 0 30px;"><%= image_tag skill.avatar.thumb.url if skill.avatar.url %></td>
         <td style="padding:0 30px 0 30px;"><%= skill.title %></td>
         <td style="padding:0 30px 0 30px;"><%= skill.description %></td>
-        <td style="padding:0 30px 0 30px;"><%= link_to 'View', skill %></td>
+        <td  style="  padding:0 30px 0 30px;"><%= link_to 'View', skill %></td>
         <td style="padding:0 30px 0 30px;"><%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %></td>
         <td style="padding:0 30px 0 30px;"><%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %></td>
       </tr>
