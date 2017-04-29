@@ -32,6 +32,7 @@ class SkillsController < ApplicationController
 
   def show
     @teacher = @skill.teacher
+    @reviewed_lessons = @skill.lessons.where.not(student_reviewing_teacher: nil, student_reviewing_teacher: '')
   end
 
   def edit

@@ -40,6 +40,7 @@ class LessonsController < ApplicationController
   def add_rating
     if current_user == @lesson.teacher
       @lesson.teacher_rating_student = lesson_params[:rating].to_i
+      @lesson.teacher_reviewing_student = lesson_params[:review]
       @lesson.save
       @lesson.student.points -= @lesson.hours
       @lesson.student.save
@@ -48,6 +49,7 @@ class LessonsController < ApplicationController
       redirect_to root_path   
     elsif current_user == @lesson.student
       @lesson.student_rating_teacher = lesson_params[:rating].to_i
+      @lesson.student_reviewing_teacher = lesson_params[:review]
       @lesson.save
       redirect_to root_path
     end
@@ -108,7 +110,7 @@ class LessonsController < ApplicationController
     end
 
     def lesson_params
-      whitelisted = params.require(:lesson).permit(:skill, :teacher, :student, :teacher_rating_student, :student_rating_teacher, :start_time, :hours, :requested_at, :confirmed_at, :teacher_reviewing_student, :student_reviewing_teacher, :rating)
+      whitelisted = params.require(:lesson).permit(:skill, :teacher, :student, :teacher_rating_student, :student_rating_teacher, :start_time, :hours, :requested_at, :confirmed_at, :teacher_reviewing_student, :student_reviewing_teacher, :rating, :review)
       whitelisted.merge(teacher_id: current_user.id.to_i)
     end
 end

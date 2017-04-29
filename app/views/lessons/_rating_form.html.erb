@@ -56,10 +56,16 @@
   </div>
 
 
-
   <%= hidden_field_tag 'skill', @skill.id %>
 
    <div class="actions">
     <%= f.submit %>
+  </div>
+
+  <div class="field" >
+
+    <%= f.text_area :review %>
+    <%= f.label("Text Review (optional)") %>
+
   </div>
 <% end %>
