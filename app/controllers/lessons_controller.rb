@@ -41,7 +41,11 @@ class LessonsController < ApplicationController
     if current_user == @lesson.teacher
       @lesson.teacher_rating_student = lesson_params[:rating].to_i
       @lesson.save
-      redirect_to root_path
+      @lesson.student.points -= @lesson.hours
+      @lesson.student.save
+      @lesson.teacher.points += @lesson.hours
+      @lesson.teacher.save
+      redirect_to root_path   
     elsif current_user == @lesson.student
       @lesson.student_rating_teacher = lesson_params[:rating].to_i
       @lesson.save
@@ -58,7 +62,9 @@ class LessonsController < ApplicationController
     @lesson.student = current_user
     @lesson.requested_at = DateTime.now
     respond_to do |format|
-      if @lesson.teacher == current_user
+      if @lesson.student.points < @lesson.hours
+        format.html { redirect_to my_skills_path, notice: "You don't have enough points!  Try teaching to earn more" }
+      elsif @lesson.teacher == current_user
         format.html { redirect_to @skill, notice: 'You cannot learn your own skill.' }
       elsif @lesson.start_time < DateTime.now
         format.html { redirect_to @skill, notice: 'You cannot schedule a lesson in the past.' }
