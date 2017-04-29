@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   def need_rating
     if current_user
+      unconfirmed_lessons = current_user.lessons.select {|l| l.confirmed_at == nil}
+      unconfirmed_lessons.each do |lesson|
+        lesson.destroy
+      end
+
       unrated_teacher_lessons = current_user.lessons_as_teacher.where(teacher_rating_student:nil).select {|l| l.start_time + l.hours*60*60 < DateTime.now if l.start_time}
       unrated_student_lessons = current_user.lessons_as_student.where(student_rating_teacher:nil).select {|l| l.start_time + l.hours*60*60 < DateTime.now if l.start_time}
     end
