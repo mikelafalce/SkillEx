@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   def need_rating
     if current_user
       unconfirmed_lessons = current_user.lessons.select {|l| l.confirmed_at == nil}
-      unconfirmed_lessons.each do |lesson|
+      unconfirmed_lessons_past_due = unconfirmed_lessons.select {|l| l.start_time < DateTime.now}
+      unconfirmed_lessons_past_due.each do |lesson|
         lesson.destroy
       end
 
