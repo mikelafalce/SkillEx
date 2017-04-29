@@ -1,10 +1,17 @@
-<h1><%= @skill.title %></h1>
-<div>Teacher: <%= @teacher.first_name %></div> <br>
+<div align="center">
+  <h1><%= @skill.title %></h1><br>
+  <%= image_tag @skill.avatar.thumb.url if @skill.avatar.url %>
+  <br><br>
+  <div>Teacher: </div>
+  <div><%= @teacher.first_name %></div> <br>
 
-<div>Description: <%= @skill.description %></div>
+  <div>Description: </div>
+  <div><%= @skill.description %></div><br>
 
+  <h3>
+    <%= link_to 'Request a Lesson', new_lesson_path(skill: @skill) %><br><br>
+  </h3>
+  <%= link_to 'Edit Skill', edit_skill_path(@skill) if current_user == @teacher %> |
+  <%= link_to 'Go Back', skills_path %> <br>
 
-<%= link_to 'Edit', edit_skill_path(@skill) if current_user == @teacher %> |
-<%= link_to 'Back', skills_path %> <br>
-
-<%= link_to 'Request a Lesson', new_lesson_path(skill: @skill) %>
+</div>
