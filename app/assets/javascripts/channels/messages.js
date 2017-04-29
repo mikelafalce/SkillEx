@@ -32,7 +32,8 @@ function idExists (messages, id) {
 
         var event = new CustomEvent("messenger")
         document.dispatchEvent(event)
-        console.log("Message: ", message) // { from_user_id:, to_user_id:, body:, updated_at: }
+        console.log("Message: ", message)
+        console.log("Messages: ", this.messages) // { from_user_id:, to_user_id:, body:, updated_at: }
         // { from_user_id:, to_user_id:, body:, updated_at: }
       }
     },
