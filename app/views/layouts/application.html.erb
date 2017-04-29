@@ -16,11 +16,9 @@
     <nav>
       <%= render 'layouts/header' %>
       <% if current_user %>
-        <p>Welcome, <%= current_user.first_name %>! </p>
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+        <h2 align="center">Welcome to SkillEx, <%= current_user.first_name %>! </h2>
       <% else %>
-        <%= link_to 'Register', new_user_registration_path %>
-        <%= link_to 'Login', new_user_session_path %>
+        
       <% end %>
     </nav>
     <div class='container'>
