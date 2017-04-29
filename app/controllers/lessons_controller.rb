@@ -10,7 +10,7 @@ class LessonsController < ApplicationController
     @skill = @lesson.skill
   end
 
-  def my_lessons
+  def my_upcoming_lessons
     @my_lessons_as_teacher = current_user.lessons_as_teacher
     @my_lessons_as_student = current_user.lessons_as_student
   end
