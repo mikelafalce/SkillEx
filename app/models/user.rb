@@ -12,4 +12,9 @@ class User < ApplicationRecord
   has_many :lessons_as_student, class_name: 'Lesson', foreign_key: 'student_id'
 
   has_many :skills, foreign_key: "teacher_id"
+
+  def lessons
+    self.lessons_as_student + self.lessons_as_teacher
+  end
+
 end
