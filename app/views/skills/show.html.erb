@@ -14,4 +14,18 @@
   <%= link_to 'Edit Skill', edit_skill_path(@skill) if current_user == @teacher %> |
   <%= link_to 'Go Back', skills_path %> <br>
 
+  <h3>
+    Student Reviews
+  </h3>
+  <%@reviewed_lessons.each do |lesson|%>
+    <div>Student: <%= lesson.student.first_name %></div> 
+
+    <div>Lesson Date: <%= lesson.start_time %></div> 
+
+    <div>Review: </div>
+    <div><%= lesson.student_rating_teacher %> Stars</div>
+    <div><%= lesson.student_reviewing_teacher %></div> <br/>
+  <%end%>
+
+
 </div>

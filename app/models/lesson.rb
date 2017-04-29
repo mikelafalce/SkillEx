@@ -6,4 +6,7 @@ class Lesson < ApplicationRecord
   def rating
   end
 
+  def review
+  end
+  
 end
