@@ -3,7 +3,7 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }, ) do |f| %>
   <%= devise_error_messages! %>
 
-  <% if current_user.avatar.url.present? %>
+  <% if current_user.avatar.url %>
     <%= image_tag(current_user.avatar.thumb.url) %></br>
     <%= f.label :remove_avatar do %>
       Delete profile picture:
