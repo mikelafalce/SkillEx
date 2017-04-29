@@ -5,7 +5,8 @@ class CreateLessons < ActiveRecord::Migration[5.1]
       t.references :skill
       t.references :teacher
       t.references :student
-
+      t.text :teacher_reviewing_student
+      t.text :student_reviewing_teacher
       t.integer :teacher_rating_student
       t.integer :student_rating_teacher
       

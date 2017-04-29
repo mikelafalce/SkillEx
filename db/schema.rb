@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170428225519) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +21,8 @@ ActiveRecord::Schema.define(version: 20170428225519) do
     t.bigint "skill_id"
     t.bigint "teacher_id"
     t.bigint "student_id"
+    t.text "teacher_reviewing_student"
+    t.text "student_reviewing_teacher"
     t.integer "teacher_rating_student"
     t.integer "student_rating_teacher"
     t.datetime "start_time"
