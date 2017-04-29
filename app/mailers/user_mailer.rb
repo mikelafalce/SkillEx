@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'test@test.com'
+  default from: 'skillex.bravo@gmail.com'
 
   def confirm_lesson(lesson)
     @lesson = lesson
