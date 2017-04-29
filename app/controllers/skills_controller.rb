@@ -26,7 +26,7 @@ class SkillsController < ApplicationController
       current_user.skills << @skill
       redirect_to @skill, notice: 'Skill was successfully created.'
     else
-      redirect_to new_skill_path, locals: { @skill: @skill }
+      render :new, locals: { skill: @skill }
     end
   end
 

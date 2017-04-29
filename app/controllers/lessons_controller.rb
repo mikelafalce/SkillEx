@@ -11,8 +11,8 @@ class LessonsController < ApplicationController
   end
 
   def my_upcoming_lessons
-    @my_lessons_as_teacher = current_user.lessons_as_teacher
-    @my_lessons_as_student = current_user.lessons_as_student
+    @my_lessons_as_teacher = current_user.lessons_as_teacher.select {|l| l.start_time > DateTime.now}
+    @my_lessons_as_student = current_user.lessons_as_student.select {|l| l.start_time > DateTime.now}
   end
 
   def show
