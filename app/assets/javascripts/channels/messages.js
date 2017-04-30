@@ -1,4 +1,3 @@
-// TODO: don't invoke when not logged in
 function idExists (messages, id) {
   for (var i = 0; i<messages.length; i++) {
     if (messages[i]['id'] == id) {
@@ -6,7 +5,7 @@ function idExists (messages, id) {
     }
   }
 }
-// jQuery(document).ready(function () {
+
   App.messenger = App.cable.subscriptions.create("MessagesChannel", {
     messages: {},
 
@@ -19,7 +18,6 @@ function idExists (messages, id) {
     },
 
     received: function (payload) {
-      // TODO: get current_user_id from somewhere!
       var message = payload.message;
       var id = message.from_user_id === currentUserId ? message.to_user_id : message.from_user_id
       this.messages[id] = this.messages[id] || []
@@ -32,9 +30,6 @@ function idExists (messages, id) {
 
         var event = new CustomEvent("messenger")
         document.dispatchEvent(event)
-        console.log("Message: ", message)
-        console.log("Messages: ", this.messages) // { from_user_id:, to_user_id:, body:, updated_at: }
-        // { from_user_id:, to_user_id:, body:, updated_at: }
       }
     },
 
@@ -42,4 +37,4 @@ function idExists (messages, id) {
       this.perform('send_message', {to_user_id: to_user_id, body: body})
     }
   })
-// })
+

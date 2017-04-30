@@ -25,19 +25,13 @@ var MessengerWindow = React.createClass({
 
   submitNewMessage: function (e) {
     e.preventDefault();
-    console.log(this.state.messagesById)
     App.messenger.send_message(this.state.recipientId, this.state.messageValue)
   },
 
   handleMessageChange: function (e) {
     e.preventDefault();
     this.setState({messageValue:e.target.value})
-    // console.log(e.target.value)
   },
-
-  // show: function (){
-  //   this.setState({show: true})
-  // },
 
   showHandleClick: function (e){
     const messagesById = this.state.messages[e.target.getAttribute('id')];
