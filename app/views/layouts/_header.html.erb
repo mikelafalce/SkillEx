@@ -3,13 +3,11 @@
    top: 0px; background-color: #ffa31a;" class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a style="margin-top:8px; color:#209FE3;" class="navbar-brand" href="/">SkillEx</a>
+      <a class="navbar-brand"><%= link_to(image_tag("SkillexIcon"), root_path) %><a href="/" style='font-size:large; color:white; margin-left: 10px'>SkillEx</a></a>
+    </div>
+
+
+    <ul class='nav navbar-nav navbar-right'>
       <%= form_tag skills_path, method: :get do %>
         <%= text_field_tag :search, params[:search] %>
         <%= submit_tag "Search", name: nil %>
