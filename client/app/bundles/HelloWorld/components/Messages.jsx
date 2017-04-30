@@ -7,8 +7,8 @@ var MessengerWindow = React.createClass({
      return {
        messages: [],
        messagesById: [],
-       convo: false,
-       chatId: null
+       messageValue: '',
+       recipientId: null
      };
    },
   componentDidMount: function () {
@@ -23,21 +23,25 @@ var MessengerWindow = React.createClass({
     this.setState({ messages: App.messenger ? App.messenger.messages : [] })
   },
 
-  handleClick: function () {
-    this.setState({})
+  submitNewMessage: function (e) {
+    e.preventDefault();
+    console.log(this.state.messagesById)
+    App.messenger.send_message(this.state.recipientId, this.state.messageValue)
   },
 
-  show: function (){
-    this.setState({show: true})
+  handleMessageChange: function (e) {
+    e.preventDefault();
+    this.setState({messageValue:e.target.value})
+    // console.log(e.target.value)
   },
+
+  // show: function (){
+  //   this.setState({show: true})
+  // },
 
   showHandleClick: function (e){
-    this.handleClick();
-    this.show();
-    console.log(e.target.getAttribute('id'))
     const messagesById = this.state.messages[e.target.getAttribute('id')];
-    console.log(messagesById);
-    this.setState({messagesById: messagesById})
+    this.setState({messagesById: messagesById, show:true, recipientId:e.target.getAttribute('id')})
   },
  
   close: function (){
@@ -68,17 +72,17 @@ var MessengerWindow = React.createClass({
                 onClose={this.close}>
            
                 <div>
-                <a onClick={this.close.bind(this)}>Close this modal</a>
+                <a onClick={this.close}>Close this modal</a>
                 {
-                  //Object.keys(userMessages).map(function(userId) {
-                  //const messagesForUser = userMessages[userId]
                   this.state.messagesById.map(function(message) {  
                     return <div>{message.body} from {message.from_user.first_name} to {message.to_user.first_name}</div>
                   })
-                //})
   }
                 </div>
-                
+                <form onSubmit={this.submitNewMessage}>
+                  <input type="text" onChange={this.handleMessageChange}/>
+                  <input value="Submit" type="submit"/>
+                </form>
           </Modal>
       </div>
     )
