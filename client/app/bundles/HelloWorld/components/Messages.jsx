@@ -1,10 +1,14 @@
-import React from "react"
+import React from "react";
+import ReactDOM from 'react-dom';
+import Modal, {closeStyle} from 'simple-react-modal'
 
 var MessengerWindow = React.createClass({
   getInitialState: function() {
      return {
        messages: [],
-       convo: false
+       messagesById: [],
+       messageValue: '',
+       recipientId: null
      };
    },
   componentDidMount: function () {
@@ -19,25 +23,61 @@ var MessengerWindow = React.createClass({
     this.setState({ messages: App.messenger ? App.messenger.messages : [] })
   },
 
-  _handleClick: function () {
-    this.setState({
-      convo: true
-    })
+  submitNewMessage: function (e) {
+    e.preventDefault();
+    App.messenger.send_message(this.state.recipientId, this.state.messageValue)
+  },
+
+  handleMessageChange: function (e) {
+    e.preventDefault();
+    this.setState({messageValue:e.target.value})
+  },
+
+  showHandleClick: function (e){
+    const messagesById = this.state.messages[e.target.getAttribute('id')];
+    this.setState({messagesById: messagesById, show:true, recipientId:e.target.getAttribute('id')})
+  },
+ 
+  close: function (){
+    this.setState({show: false})
   },
 
   render: function () {
     const userMessages = this.state.messages
-    // [this.props.user]
-    // debugger
+    
     return (
-      <div onClick={this._handleClick}>
-              {Object.keys(userMessages).map(function(userId) {
-                const messagesForUser = userMessages[userId]
-                const test = messagesForUser.map(function(message) {  
-                  return <div>{message.body} from {message.from_user.first_name} to {message.to_user.first_name}</div>
-                })
-                return test[test.length - 1]
-              })}
+      <div>
+        <div onClick={this.showHandleClick}>
+                {Object.keys(userMessages).map(function(userId) {
+                  const messagesForUser = userMessages[userId]
+                  const test = messagesForUser.map(function(message) {  
+                    return <div id={userId}>{message.body} from {message.from_user.first_name} to {message.to_user.first_name}</div>
+                  })
+                  return test[test.length - 1]
+                })}
+        </div>
+          <Modal
+                className="test-class" //this will completely overwrite the default css completely 
+                style={{background: 'red'}} //overwrites the default background 
+                containerStyle={{background: 'blue'}} //changes styling on the inner content area 
+                containerClassName="test"
+                closeOnOuterClick={true}
+                show={this.state.show}
+                onClose={this.close}>
+           
+                <div>
+                <a onClick={this.close}>Close this modal</a>
+                {
+                  this.state.messagesById.map(function(message) {  
+                    return <div>{message.body} from {message.from_user.first_name} to {message.to_user.first_name}</div>
+                  })
+  }
+                </div>
+                <form onSubmit={this.submitNewMessage}>
+                  <input type="text" onChange={this.handleMessageChange}/>
+                  <input value="Submit" type="submit"/>
+                </form>
+          </Modal>
       </div>
     )
   }
