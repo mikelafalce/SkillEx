@@ -1,11 +1,17 @@
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<br><br>
+<body style="background-color: #6396e8;">
+<h1 style="color: #ffa31a; font-family:Ubuntu;" align="center">List of Skills</h1><br><br>
 
 <%= form_tag skills_path, method: :get do %>
   <%= text_field_tag :search, params[:search] %>
   <%= submit_tag "Search", name: nil %>
-<% end %><br><br>
-
-<h1  style='color:#6396e8;' align="center">List of Skills</h1><br><br>
+<% end %>
 
 <% @skills.each do |skill| %>
   <div class="w3-container">
@@ -23,3 +29,6 @@
 <div align="center">
 <h3><%= link_to 'New Skill', new_skill_path %></h3>
 </div><br><br><br><br>
+
+</body>
+
