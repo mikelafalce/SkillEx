@@ -1,2 +1,12 @@
-<p>Your lesson is confirmed at <%= @lesson.start_time =%>, <%= @lesson.teacher.first_name %>!</p>
-<p>Click if you want check on  <a href=<%= root_url %>>your lesson</a> !</p>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1 align='center'>SkillEx</h1>
+    <p>Your <%= @lesson.skill.title =%> lesson is confirmed at <%= @lesson.start_time =%>!</p>
+    <p>If you want check on your lesson, <a href=<%= lesson_path(@lesson) %>>click here</a> !</p>
+  </body>
+</html>

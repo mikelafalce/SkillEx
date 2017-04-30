@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
   <head>
     <title>SkillEx</title>
@@ -15,16 +15,8 @@
   <body>
     <nav>
       <%= render 'layouts/header' %>
-      <% if current_user %>
-        <p>Welcome, <%= current_user.first_name %>! </p>
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Register', new_user_registration_path %>
-        <%= link_to 'Login', new_user_session_path %>
-      <% end %>
     </nav>
-    <div class='container'>
-      <p class="notice"><%= notice %></p>
+    <div align='center' class='container'>
       <p class="alert"><%= alert %></p>
       <%= yield %>
     </div>
