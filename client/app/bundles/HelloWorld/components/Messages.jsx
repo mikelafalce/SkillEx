@@ -56,6 +56,7 @@ var MessengerWindow = React.createClass({
                   return test[test.length - 1]
                 })}
         </div>
+        
           <Modal
                 className="test-class" //this will completely overwrite the default css completely 
                 style={{background: 'red'}} //overwrites the default background 
