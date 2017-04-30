@@ -1,4 +1,4 @@
-<br/><br/><br/><br/>
+<br/>
 
 
 <head><link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"></head>
@@ -8,22 +8,20 @@
 <div align="center">
 <h2 style="color: #ffa31a; font-family:Ubuntu;">To teach or to learn? That is the question.</h2> <br/><br/>
 
-<%if @requested_lessons.count > 0%>
-You have <%= @requested_lessons.count %> requested lessons <br/>
-  <%@requested_lessons.each do |lesson|%>
-    start time: <%=lesson.start_time%> <br/>
-    hours: <%=lesson.hours%> <br/>
-    student: <%=lesson.student.first_name%> <%=lesson.student.last_name%>
-    <%=link_to 'View Lesson', lesson_path(lesson)%> <br/>
-  <%end%>
-  <%end%>
-  
-
- <% if current_user.avatar.url %>	
+<% if current_user.avatar.url %>	
  	<%= image_tag current_user.avatar.normal.url %><br>
  <% else %>
  	<%= image_tag "generic.jpeg" %><br>
 <%end%><br>
+<%if @requested_lessons.count > 0%>
+  You have <%= @requested_lessons.count %> requested lessons <br/>
+    <%@requested_lessons.each do |lesson|%>
+      start time: <%=lesson.start_time%> <br/>
+      hours: <%=lesson.hours%> <br/>
+      student: <%=lesson.student.first_name%> <%=lesson.student.last_name%>
+      <%=link_to 'View Lesson', lesson_path(lesson)%> <br/>
+    <%end%>
+<%end%>
 
         <small style="color: transparent">Welcome to SkillEx, <%= current_user.first_name %>! </small>
 
