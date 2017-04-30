@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
 <%= form_tag skills_path, method: :get do %>
   <%= text_field_tag :search, params[:search] %>
@@ -9,11 +9,20 @@
 
 <% @skills.each do |skill| %>
   <div class="w3-container">
-    <div class="w3-panel w3-card" style="padding-bottom:8px; padding-top:4px; background-color: white">
+    <div class="w3-panel w3-card-4" style="background-color: white; border-radius: 25px; height: 250px; padding-left: 0px; overflow: hidden; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin-bottom: 50px">
       <div class="row">
-        <div class="col-sm-4"><div align='left'><%= image_tag skill.avatar.thumb.url if skill.avatar.url %></div></div>
-        <div class="col-sm-4"><h5><%= skill.title %></h5><br/><%= skill.description %><br/></div>
-        <div class="col-sm-4"><%= link_to 'View', skill %> <%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %></div>
+        <div class="col-sm-4" align='left'>
+            <%if skill.avatar.url%>
+              <%= image_tag skill.avatar.normal.url %>      
+            <%else%>
+              <%= image_tag("generic_skill.jpg") %>
+            <%end%>
+        </div>
+        <div class="col-sm-4"><h5><%= skill.title %></h5><br/><%= skill.description %><br/>
+        </div>
+        <div class="col-sm-4"><%= link_to 'View', skill %> <%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %>
+          <button id='Request' class='btn' style='background-color: orange; color: white'>Request a Lesson</button>
+        </div>
       </div> 
     </div>
   </div>
