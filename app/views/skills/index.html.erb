@@ -10,28 +10,22 @@
 
 <% @skills.each do |skill| %>
   <div class="w3-container">
-  <div class="flip">
-    <div class="w3-panel w3-card-4 card" style="padding-bottom:8px; padding-top:4px; background-color: white; border-radius: 25px">
-    <div class="face front"> 
+    <div class="w3-panel w3-card-4" style="background-color: white; border-radius: 25px; height: 250px; padding-left: 0px; overflow: hidden">
       <div class="row">
-        <div class="col-sm-4">
-          <div align='left'>
+        <div class="col-sm-4" align='left'>
             <%if skill.avatar.url%>
               <%= image_tag skill.avatar.normal.url %>      
             <%else%>
               <%= link_to(image_tag("generic_skill.jpg"), edit_user_registration_path) %>
             <%end%>
-          </div>
         </div>
-        <div class="col-sm-4"><h5><%= skill.title %></h5><br/><%= skill.description %><br/></div>
-        <div class="col-sm-4"><%= link_to 'View', skill %> <%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %></div>
+        <div class="col-sm-4"><h5><%= skill.title %></h5><br/><%= skill.description %><br/>
+        </div>
+        <div class="col-sm-4"><%= link_to 'View', skill %> <%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %>
+          <button id='Request' class='btn' style='background-color: orange; color: white'>Request a Lesson</button>
+        </div>
       </div> 
     </div>
-    <div class="face back"> 
-        Back
-    </div> 
-    </div>
-  </div>
   </div>
 <% end %>
 
@@ -39,49 +33,3 @@
 <div align="center">
 <h3><%= link_to 'New Skill', new_skill_path %></h3>
 </div><br><br><br><br>
-
-<style>
-body {
- background: #ccc;   
-}
-.flip {
-  -webkit-perspective: 800;
-    position: relative;
-    margin: 50px auto;
-}
-.flip .card.flipped {
-  -webkit-transform: rotatex(-180deg);
-}
-.flip .card {
-  width: 100%;
-  height: 100%;
-  -webkit-transform-style: preserve-3d;
-  -webkit-transition: 0.5s;
-}
-.flip .card .face {
-  width: 100%;
-  height: 100%;
-  /*position: absolute;*/
-  -webkit-backface-visibility: hidden ;
-  z-index: 2;
-
-}
-.flip .card .front {
-  /*position: absolute;*/
-  z-index: 1;
-    cursor: pointer;
-}
-.flip .card .back {
-  -webkit-transform: rotatex(-180deg);
-    cursor: pointer;
-}
-</style>
-
-<script>
-$('.flip').click(function(){
-    $(this).find('.card').addClass('flipped').mouseleave(function(){
-        $(this).removeClass('flipped');
-    });
-    return false;
-});
-</script>
