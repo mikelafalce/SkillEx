@@ -78,7 +78,7 @@ var MessengerWindow = React.createClass({
                 //})
   }
                 </div>
-           
+                
           </Modal>
       </div>
     )
