@@ -1,14 +1,18 @@
 <head><link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"></head>
 
+
+<body style="background-color: #6396e8;">
 <p id="notice"><%= notice %></p>
 
-<h1 class="text-center" style="color:#6396e8" font-family:Ubuntu;"><em>My Upcoming Lessons</em></h1>
+
+<br><br><br><br>
+<h1 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">My Upcoming Lessons</h1>
 
 <div class="text-center">
 <table align="center" style="width:80%">
-  <thead>
-    <tr style="color:#6396e8" >
 
+  <thead>
+    <tr  >
       <th></th>
       <th>Skill</th>
       <th>Teacher</th>
@@ -22,8 +26,9 @@
 
   <tbody>
     <h3>As Student:</h3>
+    <br><br>
     <% @my_lessons_as_student.each do |lesson| %>
-      <tr style="color:#6396e8">
+      <tr >
         <td><%= image_tag lesson.skill.avatar.thumb.url if lesson.skill.avatar.url %></td>
         <td><%= lesson.skill.title %></td>
         <td><%= lesson.teacher.first_name %> <%= lesson.teacher.last_name %></td>
@@ -36,9 +41,17 @@
         <!-- <td><%= link_to 'Cancel Lesson', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
+    </tbody>
+
+    <br><br>
+   
+      
+
+  <tbody>
     <h3>As Teacher:</h3>
+    <br><br>
     <% @my_lessons_as_teacher.each do |lesson| %>
-      <tr style="color:#6396e8">
+      <tr >
         <td><%= image_tag lesson.skill.avatar.thumb.url if lesson.skill.avatar.url %></td>
         <td><%= lesson.skill.title %></td>
         <td><%= lesson.teacher.first_name %> <%= lesson.teacher.last_name %></td>
@@ -57,9 +70,6 @@
 
 <br>
 
-
-<h3><%= link_to 'New Lesson', new_lesson_path, {style: "color: #6396e8"} %></h3>
-
-
-
 </div>
+
+</body>
