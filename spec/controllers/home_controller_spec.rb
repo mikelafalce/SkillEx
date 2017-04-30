@@ -12,10 +12,10 @@ RSpec.describe "Home" do
         expect(page.html).to match("You need to sign in or sign up before continuing.")
       end
 
-      it "shows a Register and Login button" do
+      it "shows a Register and Login option" do
         visit root_path
-        expect(page.html).to match("Login")
-        expect(page.html).to match("Register")
+        expect(page.html).to match("Log in")
+        expect(page.html).to match("sign up")
       end
     end
 
