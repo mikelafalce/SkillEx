@@ -15,7 +15,7 @@ gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', github: "rails/sass-rails"
 
-
+gem 'figaro'
 gem "letter_opener", :group => :development
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -25,6 +25,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'devise'
 gem 'image_magick'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -43,11 +44,11 @@ gem 'rails-controller-testing'
 
 gem "guard"
 gem "guard-rspec"
+gem "faker"
 
 group :development, :test do
   gem "database_cleaner"
   gem "rspec-rails"
-  gem "faker"
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver

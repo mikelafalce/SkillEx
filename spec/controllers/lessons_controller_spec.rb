@@ -20,6 +20,7 @@ RSpec.describe LessonsController, type: :controller do
         skill: skill1,
         teacher: user1,
         student: user1,
+        confirmed_at: DateTime.now,
         )}
 
       before { login_as user1 }

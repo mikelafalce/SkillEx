@@ -1,9 +1,18 @@
+
 class SkillsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_skill, only: [:show, :edit, :update, :destroy, :join, :leave]
 
   def index
-    @skills = Skill.all
+    if params[:search]
+      @skills = Skill.search(params[:search])
+    else
+      @skills = Skill.all
+    end
+  end
+
+  def my_skills
+    @skills = current_user.skills
   end
 
   def new
@@ -23,6 +32,7 @@ class SkillsController < ApplicationController
 
   def show
     @teacher = @skill.teacher
+    @reviewed_lessons = @skill.lessons.where.not(student_reviewing_teacher: nil, student_reviewing_teacher: '')
   end
 
   def edit
@@ -54,6 +64,6 @@ class SkillsController < ApplicationController
   end
 
   def skill_params
-    params.require(:skill).permit(:title, :description)
+    params.require(:skill).permit(:title, :description, :search, :avatar, :avatar_cache, :remove_avatar)
   end
 end
