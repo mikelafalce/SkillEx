@@ -1,13 +1,13 @@
 
 <nav style=" width:100%;
-   top: 0px; background-color: #ffa31a;" class="navbar navbar-default">
+    background-color: #ffa31a;" class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand"><%= link_to(image_tag("SkillexIcon"), root_path) %><a href="/" style='font-size:large; color:white; margin-left: 10px'>SkillEx</a></a>
+      <a  class="navbar-brand"><%= link_to(image_tag("SkillexIcon"), root_path) %><a href="/" style='font-size:large; color:white; margin-left: 10px'>SkillEx</a></a>
     </div>
 
 
-    <ul class='nav navbar-nav navbar-right'>
+    <ul style='margin-right: 20px' class='nav navbar-nav navbar-right'>
       <%= form_tag skills_path, method: :get do %>
         <%= text_field_tag :search, params[:search] %>
         <%= submit_tag "Search", name: nil %>
@@ -15,23 +15,26 @@
     </div>
 
 
-    <ul class='nav navbar-nav navbar-right'>
-        <% if current_user && current_user.avatar.url %>
-          <%= link_to(image_tag(current_user.avatar.mini.url), edit_user_registration_path) %>
+    <ul style='margin-bottom: -30px; margin-right: 35px' class='nav navbar-nav navbar-right'>
+        <p style='margin-bottom: -40px;' >
+          <% if current_user && current_user.avatar.url %>
+        </p>
+         <%= link_to(image_tag(current_user.avatar.mini.url), edit_user_registration_path) %>
         <%else%>
-        
         <%end%>
-
+       
         <% if current_user %>
-        <li style="margin-top:8px; margin-right:450px; color:#209FE3;">You have: <%= current_user.points %> <%= current_user.points == 1 ? 'Point' : 'Points' %></li>
-          <li><%= link_to 'All Skills', skills_path, {style: "color: #209FE3"} %></li>
-          <li><%= link_to 'My Skills', my_skills_path, {style: "color: #209FE3"} %></li>
-          <li><%= link_to 'My Upcoming Lessons', upcoming_lessons_path, {style: "color: #209FE3"} %></li>
-          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li><br>
+          <li style="margin-top:10px; margin-right:20px; font-size: medium; color:#209FE3;">You have: <%= current_user.points %> <%= current_user.points == 1 ? 'Point' : 'Points' %></li>
+            <li ><%= link_to 'All Skills', skills_path, {style: "color: #209FE3"} %></li>
+            <li><%= link_to 'My Skills', my_skills_path, {style: "color: #209FE3"} %></li>
+            <li><%= link_to 'My Upcoming Lessons', upcoming_lessons_path , {style: "color: #209FE3"}%></li>
+          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete%></li>
+       
+        <br>
         <% else %>
           
         <% end %>
-
+        
         
 
      

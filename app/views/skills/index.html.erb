@@ -15,7 +15,7 @@
 <%= form_tag skills_path, method: :get do %>
   <%= text_field_tag :search, params[:search] %>
   <%= submit_tag "Search", name: nil %>
-<% end %>
+<% end %><br> <hr style="color: #ffa31a">
 
 <% @skills.each do |skill| %>
   <div class="w3-container">
@@ -37,11 +37,12 @@
     </div>
   </div>
 <% end %>
+<hr>
 
 <br>
 <div align="center">
-<h3><%= link_to 'New Skill', new_skill_path %></h3>
-</div><br><br><br><br>
+<h3 style="color: #ffa31a"><%= link_to 'Create A New Skill', new_skill_path %></h3>
+</div><br><br><br><br><br><br><br><br>
 
 </body>
 
