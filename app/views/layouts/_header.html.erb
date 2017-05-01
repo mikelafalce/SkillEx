@@ -6,6 +6,10 @@
       <a class="navbar-brand"><%= link_to(image_tag('/images/SkillexIcon.jpg'), root_path) %><a href="/" style='font-size:large; color:white; margin-left: 10px'>SkillEx</a></a>
     </div>
 
+    <div class="dropdown" style='margin-left: 200px'>
+        <button class="btn dropdown-toggle" style='background-color: skyblue' type="button" data-toggle="dropdown">Chicago
+        <span class="caret"></span></button>
+    </div>
 
     <ul class='nav navbar-nav navbar-right'>
       <%= form_tag skills_path, method: :get do %>
