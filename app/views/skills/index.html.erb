@@ -27,6 +27,12 @@
         </div>
         <div class="col-sm-4"><%= link_to 'View', skill %> <%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %>
           <button id='Request' class='btn' style='background-color: orange; color: white'>Request a Lesson</button>
+          <button
+            id='chat-<%= skill.id %>'
+            data-title='<%= skill.title %>'
+            data-skill-id='<%= skill.id %>'
+            data-teacher-id='<%= skill.teacher_id %>'
+            data-behavior='skill-chat'>Chat</button>
         </div>
       </div> 
     </div>
