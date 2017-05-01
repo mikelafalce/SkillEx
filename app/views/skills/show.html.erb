@@ -16,7 +16,7 @@
     <%= link_to 'Request a Lesson', new_lesson_path(skill: @skill) %><br><br>
   </h3>
   <%= link_to 'Edit Skill', edit_skill_path(@skill) if current_user == @teacher %> |
-  <%= link_to 'Go Back', skills_path %> <br>
+  <%= link_to 'Go Back', my_skills_path %> <br>
 
   <h3>
     Student Reviews
