@@ -19,7 +19,7 @@
         <% if current_user && current_user.avatar.url %>
           <%= link_to(image_tag(current_user.avatar.mini.url), edit_user_registration_path) %>
         <%else%>
-        
+          <%= link_to(image_tag('/images/generic_nav.jpg'), edit_user_registration_path) %>
         <%end%>
 
         <% if current_user %>
