@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import Modal, {closeStyle} from 'simple-react-modal'
+import Conversations from './Conversations';
 
 var MessengerWindow = React.createClass({
   getInitialState: function() {
@@ -42,34 +43,46 @@ var MessengerWindow = React.createClass({
     this.setState({show: false})
   },
 
+  showConversation :  function(conversation){
+    const {userId} = conversation;
+    const messagesById = this.state.messages[userId];
+    this.setState({messagesById: messagesById, show:true, recipientId:userId});
+  },
+
   render: function () {
     const userMessages = this.state.messages
-    
+    const conversations = Object.keys(userMessages).map(function(userId) {
+                  const messagesForUser = userMessages[userId];
+                  const lastMessage = messagesForUser[messagesForUser.length-1];
+
+                  return {
+                    lastMessage,
+                    userId
+                  }
+                });
+    console.log(conversations);
     return (
       <div>
-        <div onClick={this.showHandleClick}>
-                {Object.keys(userMessages).map(function(userId) {
-                  const messagesForUser = userMessages[userId]
-                  const test = messagesForUser.map(function(message) {  
-                    return <div id={userId}>{message.body} from {message.from_user.first_name} to {message.to_user.first_name}</div>
-                  })
-                  return test[test.length - 1]
-                })}
-        </div>
+      
+      <div className="messages-container"> 
+       <Conversations conversations={conversations} onConversationClick={this.showConversation} />
+
           <Modal
-                className="test-class" //this will completely overwrite the default css completely 
-                style={{background: 'red'}} //overwrites the default background 
-                containerStyle={{background: 'blue'}} //changes styling on the inner content area 
-                containerClassName="test"
+                className="message-detail" 
+                containerClassName="message-detail-inner"
                 closeOnOuterClick={true}
                 show={this.state.show}
                 onClose={this.close}>
-           
                 <div>
                 <a onClick={this.close}>Close this modal</a>
                 {
                   this.state.messagesById.map(function(message) {  
-                    return <div>{message.body} from {message.from_user.first_name} to {message.to_user.first_name}</div>
+                    console.info(message,currentUserId);
+                    const mClassName = "message " + (message.from_user_id == currentUserId ? "message_sent" : "message_received")
+                    return <div className={mClassName}><div>
+                        {message.body} from {message.from_user.first_name} to {message.to_user.first_name}
+                      </div>
+                    </div>
                   })
   }
                 </div>
@@ -77,7 +90,9 @@ var MessengerWindow = React.createClass({
                   <input type="text" onChange={this.handleMessageChange}/>
                   <input value="Submit" type="submit"/>
                 </form>
+
           </Modal>
+          </div>
       </div>
     )
   }
