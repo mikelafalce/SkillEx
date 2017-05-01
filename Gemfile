@@ -25,6 +25,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'devise'
 gem 'image_magick'
+gem 'geocoder'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

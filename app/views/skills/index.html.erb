@@ -1,16 +1,12 @@
 
 <head>
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 </head>
 
 <br><br>
 <body>
 <h1 style="color: #ffa31a; font-family:Ubuntu;" align="center">List of Skills</h1><br><br>
-
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-
 
 <%= form_tag skills_path, method: :get do %>
   <%= text_field_tag :search, params[:search] %>
@@ -18,14 +14,14 @@
 <% end %>
 
 <% @skills.each do |skill| %>
-  <div class="w3-container">
-    <div class="w3-panel w3-card-4" style="background-color: white; border-radius: 25px; height: 250px; padding-left: 0px; overflow: hidden; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin-bottom: 50px">
-      <div class="row">
+  <div class="container">
+    <div class="card" style="background-color: white; border-radius: 25px; height: 250px; padding-left: 0px; overflow: hidden; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin-bottom: 50px">
+      <div class="front row">
         <div class="col-sm-4" align='left'>
             <%if skill.avatar.url%>
               <%= image_tag skill.avatar.normal.url %>      
             <%else%>
-              <%= image_tag("generic_skill.jpg") %>
+              <%= image_tag("/images/generic_skill.jpg") %>
             <%end%>
         </div>
         <div class="col-sm-4"><h5><%= skill.title %></h5><br/><%= skill.description %><br/>
