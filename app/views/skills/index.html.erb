@@ -2,6 +2,9 @@
 <head>
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+  <script>
+      var currentUserId = <%= @current_user_id %>
+  </script>
 </head>
 
 <br><br>
@@ -26,6 +29,7 @@
         </div>
         <div class="col-sm-4"><h5><%= skill.title %></h5><br/><%= skill.description %><br/>
         </div>
+
         <div class="col-sm-4"> 
           <%= button_to "View Full Details", skill,
                 :class => "view-skill btn", :method => :get %>
@@ -34,6 +38,12 @@
                 :class => "request-lesson btn", :method => :get %>
           <%= button_to "Chat with Teacher", hello_world_path,
                 :class => "request-chat btn", :method => :get %>
+                    <button
+            id='chat-<%= skill.id %>'
+            data-title='<%= skill.title %>'
+            data-skill-id='<%= skill.id %>'
+            data-teacher-id='<%= skill.teacher_id %>'
+            data-behavior='skill-chat'>Chat</button>
         </div>
       </div> 
     </div>

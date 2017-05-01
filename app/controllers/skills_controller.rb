@@ -4,6 +4,9 @@ class SkillsController < ApplicationController
   before_action :find_skill, only: [:show, :edit, :update, :destroy, :join, :leave]
 
   def index
+    if current_user
+      @current_user_id = current_user.id
+    end
     if params[:search]
       @skills = Skill.search(params[:search])
     else
