@@ -28,10 +28,8 @@
         <td><%= lesson.student %></td>
         <td><%= lesson.start_time %></td>
         <td><%= lesson.requested_at %></td>
-        <td><%= lesson.confirmed_at %></td>
-        <td><%= link_to 'Lesson Details', lesson, {style: "color: #6396e8"} %></td>
-        <td><%= link_to 'Edit Lesson', edit_lesson_path(lesson), {style: "color: #6396e8"} %></td>
-        <!-- <td><%= link_to 'Delete Lesson', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        <td><%= @lesson.confirmed_at %></td>
+        <td><%= link_to 'Details', lesson, {style: "color: #6396e8"} %></td>
       </tr>
     <% end %>
   </tbody>

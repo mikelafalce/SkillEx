@@ -11,12 +11,12 @@
 
 <table>
   <thead>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Description</th>
+    <tr >
+      <th style="padding: 0px 25px 0px 25px;">Skill Image</th>
+      <th style="padding: 0px 25px 0px 25px;">Title</th>
+      <th style="padding: 0px 25px 0px 25px;">Description</th>
 
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
   <br><br>
@@ -24,12 +24,12 @@
   <tbody>
     <% @skills.each do |skill| %>
       <tr>
-        <td><%= image_tag skill.avatar.thumb.url if skill.avatar.url %></td>
-        <td><%= skill.title %></td>
-        <td><%= skill.description %></td>
-        <td><%= link_to 'Show', skill %></td>
-        <td><%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %></td>
-        <td><%= link_to 'Destroy', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %></td>
+        <td style="padding: 0px 25px 0px 25px;"><%= image_tag skill.avatar.thumb.url if skill.avatar.url %></td>
+        <td style="padding: 0px 25px 0px 25px;"><%= skill.title %></td>
+        <td style="padding: 0px 25px 0px 25px;"><%= skill.description %></td>
+        <td style="padding: 0px 25px 0px 25px;"><%= link_to 'View', skill %></td>
+        <td style="padding: 0px 25px 0px 25px;"><%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %></td>
+        <td style="padding: 0px 25px 0px 25px;"><%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %></td>
       </tr>
     <% end %>
   </tbody>
