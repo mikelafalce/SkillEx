@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
 
 before_action :city_location
 def city_location
-	@location_city = request.location.ip
+	@location_city = request.location.city
 end
 
  private
