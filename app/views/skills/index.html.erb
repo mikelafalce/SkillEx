@@ -1,16 +1,32 @@
+<style>
+  .request-lesson {
+    color: white;
+    background-color: orange;
+  }
+  .request-chat {
+    color: white;
+    background-color: skyblue;
+  }
+  .view-skill {
+    color: white;
+    background-color: green;
+  }
+  .invisible {
+    visibility: hidden;
+  }
+</style>
 
 <head>
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+  <script>
+      var currentUserId = <%= @current_user_id %>
+  </script>
 </head>
 
 <br><br>
 <body>
 <h1 style="color: #ffa31a; font-family:Ubuntu;" align="center">List of Skills</h1><br><br>
-
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-
 
 <%= form_tag skills_path, method: :get do %>
   <%= text_field_tag :search, params[:search] %>
@@ -18,20 +34,39 @@
 <% end %><br> <hr style="color: #ffa31a">
 
 <% @skills.each do |skill| %>
-  <div class="w3-container">
-    <div class="w3-panel w3-card-4" style="background-color: white; border-radius: 25px; height: 250px; padding-left: 0px; overflow: hidden; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin-bottom: 50px">
+  <div class="container">
+    <div class="card" style="background-color: white; border-radius: 25px; height: 250px; padding-left: 0px; overflow: hidden; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin-bottom: 50px">
       <div class="row">
         <div class="col-sm-4" align='left'>
             <%if skill.avatar.url%>
               <%= image_tag skill.avatar.normal.url %>      
             <%else%>
-              <%= image_tag("generic_skill.jpg") %>
+              <%= image_tag("/images/generic_skill.jpg") %>
             <%end%>
         </div>
-        <div class="col-sm-4"><h5><%= skill.title %></h5><br/><%= skill.description %><br/>
+        <div class='col-sm-4'>
+          <div class="front"><h5><%= skill.title %></h5><br/><%= skill.description %><br/>
+          </div>
+          <div class="back invisible">            
+            <h1 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">Request a Lesson Time</h1>
+            <%= render 'new_lesson_form', lesson: @lesson, skill: skill %>
+          </div>
         </div>
-        <div class="col-sm-4"><%= link_to 'View', skill %> <%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %>
-          <button id='Request' class='btn' style='background-color: orange; color: white'>Request a Lesson</button>
+
+        <div class="col-sm-4"> 
+          <%= button_to "View Full Details", skill,
+                :class => "view-skill btn", :method => :get %>
+          <%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %>
+          <%= button_tag "Request a Lesson", :class => "request-lesson btn" %>
+          <%= button_to "Chat with Teacher", hello_world_path,
+                :class => "request-chat btn", :method => :get %>
+                    <button
+            id='chat-<%= skill.id %>'
+            data-title='<%= skill.title %>'
+            data-skill-id='<%= skill.id %>'
+            data-teacher-id='<%= skill.teacher_id %>'
+            data-behavior='skill-chat'>Chat</button>
+
         </div>
       </div> 
     </div>
@@ -46,3 +81,22 @@
 
 </body>
 
+
+<script>
+  $(document).ready(function(){
+      $(".back").each(function() {
+              $(this).hide();
+      });
+      $(".request-lesson").click(function(){
+          $(this).parent().parent().find('.front').fadeOut(function(){
+            $(this).parent().find('.back').removeClass('invisible')
+            $(this).parent().find('.back').fadeIn()
+          })
+          $(this).parent().parent().mouseleave(function(){
+            $(this).find('.back').fadeOut(function(){
+              $(this).parent().find('.front').fadeIn()
+            })
+          })
+      });
+  });
+</script>

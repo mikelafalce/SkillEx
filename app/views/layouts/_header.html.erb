@@ -3,9 +3,13 @@
     background-color: #ffa31a;" class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a  class="navbar-brand"><%= link_to(image_tag("SkillexIcon"), root_path) %><a href="/" style='font-size:large; color:white; margin-left: 10px'>SkillEx</a></a>
+      <a class="navbar-brand"><%= link_to(image_tag('/images/SkillexIcon.jpg'), root_path) %><a href="/" style='font-size:large; color:white; margin-left: 10px'>SkillEx</a></a>
     </div>
 
+    <div class="dropdown" style='margin-left: 200px'>
+        <button class="btn dropdown-toggle" style='background-color: skyblue' type="button" data-toggle="dropdown">Chicago
+        <span class="caret"></span></button>
+    </div>
 
     <ul style='margin-right: 20px' class='nav navbar-nav navbar-right'>
       <%= form_tag skills_path, method: :get do %>
@@ -14,13 +18,11 @@
       <% end %>
     </div>
 
-
     <ul style='margin-bottom: -30px; margin-right: 35px' class='nav navbar-nav navbar-right'>
         <p style='margin-bottom: -40px;' >
           <% if current_user && current_user.avatar.url %>
         </p>
          <%= link_to(image_tag(current_user.avatar.mini.url), edit_user_registration_path) %>
-        <%else%>
         <%end%>
        
         <% if current_user %>
@@ -29,15 +31,11 @@
             <li><%= link_to 'My Skills', my_skills_path, {style: "color: #209FE3"} %></li>
             <li><%= link_to 'My Upcoming Lessons', upcoming_lessons_path , {style: "color: #209FE3"}%></li>
           <li><%= link_to 'Logout', destroy_user_session_path, method: :delete%></li>
-       
         <br>
-        <% else %>
-          
         <% end %>
-        
-        
-
-     
     </ul>
   </div>
 </nav>
+
+
+

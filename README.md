@@ -10,6 +10,10 @@ $ brew install yarn <br/>
 $ brew install chromedriver <br/>
 $ brew install imagemagick <br/> <br/>
 $ bundle && yarn <br/>
+$ yarn add react
+$ yarn add react-dom
+$ yarn add simple-react-modal
+$ bundle && yarn (again)
 $ rails db:create && rails db:migrate && rails db:seed <br/>
 $ foreman start -f Procfile.dev
 

@@ -19,12 +19,17 @@ gem 'figaro'
 gem "letter_opener", :group => :development
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+
+gem 'jquery-rails'
+gem 'jquery-turbolinks', '2.1.0'
+gem 'jquery-ui-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'devise'
 gem 'image_magick'
+gem 'geocoder'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
