@@ -19,12 +19,10 @@ ActiveRecord::Schema.define(version: 20170430192717) do
     t.bigint "skill_id"
     t.bigint "teacher_id"
     t.bigint "student_id"
-    t.text "teacher_reviewing_student"
-    t.text "student_reviewing_teacher"
     t.integer "teacher_rating_student"
     t.integer "student_rating_teacher"
     t.datetime "start_time"
-    t.integer "hours"
+    t.datetime "end_time"
     t.datetime "requested_at"
     t.datetime "confirmed_at"
     t.datetime "created_at", null: false

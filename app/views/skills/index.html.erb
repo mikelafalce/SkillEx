@@ -20,7 +20,7 @@
             <%if skill.avatar.url%>
               <%= image_tag skill.avatar.normal.url %>      
             <%else%>
-              <%= image_tag("generic_skill.jpg") %>
+              <%= image_tag("/images/generic_skill.jpg") %>
             <%end%>
         </div>
         <div class="col-sm-4"><h5><%= skill.title %></h5><br/><%= skill.description %><br/>
