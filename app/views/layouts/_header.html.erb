@@ -16,25 +16,19 @@
 
 
     <ul class='nav navbar-nav navbar-right'>
-        <% if current_user && current_user.avatar.url %>
-          <%= link_to(image_tag(current_user.avatar.mini.url), edit_user_registration_path) %>
-        <%else%>
-          <%= link_to(image_tag('/images/generic_nav.jpg'), edit_user_registration_path) %>
-        <%end%>
+      <% if current_user && current_user.avatar.url %>
+        <%= link_to(image_tag(current_user.avatar.mini.url), edit_user_registration_path) %>
+      <%else%>
+        <%= link_to(image_tag('/images/generic_nav.jpg'), edit_user_registration_path) %>
+      <%end%>
 
-        <% if current_user %>
-        <li style="margin-top:8px; margin-right:450px; color:#209FE3;">You have: <%= current_user.points %> <%= current_user.points == 1 ? 'Point' : 'Points' %></li>
-          <li><%= link_to 'All Skills', skills_path, {style: "color: #209FE3"} %></li>
-          <li><%= link_to 'My Skills', my_skills_path, {style: "color: #209FE3"} %></li>
-          <li><%= link_to 'My Upcoming Lessons', upcoming_lessons_path, {style: "color: #209FE3"} %></li>
-          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li><br>
-        <% else %>
-          
-        <% end %>
-
-        
-
-     
+      <% if current_user %>
+      <li style="margin-top:8px; margin-right:450px; color:#209FE3;">You have: <%= current_user.points %> <%= current_user.points == 1 ? 'Point' : 'Points' %></li>
+        <li><%= link_to 'All Skills', skills_path, {style: "color: #209FE3"} %></li>
+        <li><%= link_to 'My Skills', my_skills_path, {style: "color: #209FE3"} %></li>
+        <li><%= link_to 'My Upcoming Lessons', upcoming_lessons_path, {style: "color: #209FE3"} %></li>
+        <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li><br>
+      <% end %>
     </ul>
   </div>
 </nav>
