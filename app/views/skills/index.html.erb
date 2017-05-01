@@ -1,3 +1,4 @@
+
 <head>
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
@@ -7,7 +8,7 @@
 </head>
 
 <br><br>
-<body style="background-color: #6396e8;">
+<body>
 <h1 style="color: #ffa31a; font-family:Ubuntu;" align="center">List of Skills</h1><br><br>
 
 <%= form_tag skills_path, method: :get do %>
@@ -28,9 +29,16 @@
         </div>
         <div class="col-sm-4"><h5><%= skill.title %></h5><br/><%= skill.description %><br/>
         </div>
-        <div class="col-sm-4"><%= link_to 'View', skill %> <%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %>
-          <button id='Request' class='btn' style='background-color: orange; color: white'>Request a Lesson</button>
-          <button
+
+        <div class="col-sm-4"> 
+          <%= button_to "View Full Details", skill,
+                :class => "view-skill btn", :method => :get %>
+          <%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %>
+          <%= button_to "Request a Lesson", new_lesson_path(skill),
+                :class => "request-lesson btn", :method => :get %>
+          <%= button_to "Chat with Teacher", hello_world_path,
+                :class => "request-chat btn", :method => :get %>
+                    <button
             id='chat-<%= skill.id %>'
             data-title='<%= skill.title %>'
             data-skill-id='<%= skill.id %>'
@@ -48,4 +56,19 @@
 </div><br><br><br><br>
 
 </body>
+
+<style>
+  .request-lesson {
+    color: white;
+    background-color: orange;
+  }
+  .request-chat {
+    color: white;
+    background-color: skyblue;
+  }
+  .view-skill {
+    color: white;
+    background-color: green;
+  }
+</style>
 
