@@ -46,11 +46,19 @@ class LessonsController < ApplicationController
       @lesson.student.save
       @lesson.teacher.points += @lesson.hours
       @lesson.teacher.save
+
+      UserMailer.completed_lesson_notice(@lesson).deliver_now!
+      redirect_to @lesson, notice: 'Lesson was successfully completed.'
+
       redirect_to root_path   
     elsif current_user == @lesson.student
       @lesson.student_rating_teacher = lesson_params[:rating].to_i
       @lesson.student_reviewing_teacher = lesson_params[:review]
       @lesson.save
+
+      UserMailer.completed_lesson_notice(@lesson).deliver_now!
+      redirect_to @lesson, notice: 'Lesson was successfully completed.'
+      
       redirect_to root_path
     end
   end
