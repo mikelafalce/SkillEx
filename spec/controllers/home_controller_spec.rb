@@ -8,12 +8,12 @@ RSpec.describe "Home" do
     context 'before logged in' do
 
       it 'requires to log in' do
-        visit root_path
+        visit skills_path
         expect(page.html).to match("You need to sign in or sign up before continuing.")
       end
 
       it "shows a Register and Login option" do
-        visit root_path
+        visit skills_path
         expect(page.html).to match("Log in")
         expect(page.html).to match("sign up")
       end

@@ -2,6 +2,14 @@ Rails.application.routes.draw do
   resources :skills
   resources :lessons
   devise_for :users, controllers: { registrations: 'registrations' }
+  authenticated :user do
+    root 'home#index', as: :root #-> if user is logged in
+    resources :controller #-> ONLY available for logged in users
+  end
+
+  unauthenticated :user do
+    root 'home#landing', as: :unauthenticated #-> if user is not logged in
+  end
 
   root to: 'home#index'
   get '/lessons/:id/confirm', to: 'lessons#confirm', as: 'confirm_lesson'
