@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+.closeWindow{
+  position:absolute;
+  right: 0;
+  top: 0;
+}
 .messages-container{
   display : flex;
   height : 200px;
@@ -26,6 +31,7 @@
     }
   }
   .message-detail{
+    position: relative;
     flex : 1;
     max-height: 100%;
         overflow: auto;

@@ -58,8 +58,8 @@
                 :class => "view-skill btn", :method => :get %>
           <%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %>
           <%= button_tag "Request a Lesson", :class => "request-lesson btn" %>
-          <%= button_to "Chat with Teacher", hello_world_path,
-                :class => "request-chat btn", :method => :get %>
+          <%= link_to "Chat with Teacher", hello_world_path(teacher_id: skill.teacher_id),
+                :class => "request-chat btn" %>
                     <button
             id='chat-<%= skill.id %>'
             data-title='<%= skill.title %>'
