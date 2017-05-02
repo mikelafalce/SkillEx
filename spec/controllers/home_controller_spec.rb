@@ -33,11 +33,21 @@ RSpec.describe "Home" do
         visit root_path
         expect(page).to have_content("Welcome to SkillEx, #{user1.first_name}")
       end
+    end
 
-      xit "should log the user out"
-        # before { logout user1 }
-        # visit root_path
-        # expect(user1).to be_nil
+    context 'after user is logged out' do
+      let!(:user1) {User.create(
+        first_name: "jyn",
+        last_name: "k",
+        email: "jyn@com",
+        password: '123456'
+        )}
+
+      before { logout user1 }
+      it "should log the user out" do
+        visit root_path
+        expect(page).to have_content("You need to sign in or sign up before continuing.")
+      end
     end
   end
 end
