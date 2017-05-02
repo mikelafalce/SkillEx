@@ -36,7 +36,7 @@
 
 <p>
   <strong>Confirmed At:</strong>
-  <%= @lesson.confirmed_at.strftime("%A, %d %b %Y %l:%M %p") %>
+  <%= @lesson.confirmed_at==nil ? "Pending" : @lesson.confirmed_at.strftime("%A, %d %b %Y %l:%M %p") %>
 </p><br>
 
 <%= link_to 'Confirm', confirm_lesson_path(@lesson), {style: "color: #6396e8"} if @lesson.confirmed_at == nil && current_user == @lesson.teacher%> 
