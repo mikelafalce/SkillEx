@@ -103,10 +103,12 @@
       });
       $(".request-lesson").click(function(){
           $(this).parent().parent().find('.front').fadeOut(function(){
+            $(this).parent().find('.chat').hide()
             $(this).parent().find('.back').removeClass('invisible')
             $(this).parent().find('.back').fadeIn()
           })
           $(this).parent().parent().mouseleave(function(){
+            $(this).find('.chat').hide()
             $(this).find('.back').fadeOut(function(){
               $(this).parent().find('.front').fadeIn()
             })
@@ -114,10 +116,12 @@
       });
       $(".request-chat").click(function(){
           $(this).parent().parent().find('.front').fadeOut(function(){
+            $(this).parent().find('.back').hide()
             $(this).parent().find('.chat').removeClass('invisible')
             $(this).parent().find('.chat').fadeIn()
           })
           $(this).parent().parent().mouseleave(function(){
+            $(this).find('.back').hide()
             $(this).find('.chat').fadeOut(function(){
               $(this).parent().find('.front').fadeIn()
             })
