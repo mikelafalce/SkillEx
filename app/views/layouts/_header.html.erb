@@ -6,10 +6,7 @@
       <a class="navbar-brand"><%= link_to(image_tag('/images/SkillexIcon.jpg'), root_path) %><a href="/" style='font-size:large; color:white; margin-left: 10px'>SkillEx</a></a>
     </div>
 
-    <div class="dropdown" style='margin-left: 200px'>
-        <button class="btn dropdown-toggle" style='background-color: skyblue' type="button" data-toggle="dropdown">Chicago
-        <span class="caret"></span></button>
-    </div>
+    
 
     <ul style='margin-right: 20px' class='nav navbar-nav navbar-right'>
       <%= form_tag skills_path, method: :get do %>
@@ -27,7 +24,7 @@
        
         <% if current_user %>
           <li style="margin-top:10px; margin-right:20px; font-size: medium; color:#209FE3;">You have: <%= current_user.points %> <%= current_user.points == 1 ? 'Point' : 'Points' %></li>
-            <li ><%= link_to 'All Skills', skills_path, {style: "color: #209FE3"} %></li>
+            <li ><%= link_to 'Available Skills', skills_path, {style: "color: #209FE3"} %></li>
             <li><%= link_to 'My Skills', my_skills_path, {style: "color: #209FE3"} %></li>
             <li><%= link_to 'My Upcoming Lessons', upcoming_lessons_path , {style: "color: #209FE3"}%></li>
           <li><%= link_to 'Logout', destroy_user_session_path, method: :delete%></li>
