@@ -25,7 +25,7 @@
   <%@reviewed_lessons.each do |lesson|%>
     <div>Student: <%= lesson.student.first_name %></div> 
 
-    <div>Lesson Date: <%= lesson.start_time %></div> 
+    <div>Lesson Date: <%= lesson.start_time.strftime("%A, %d %b %Y %l:%M %p") %></div> 
 
     <div>Review: </div>
     <div><%= lesson.student_rating_teacher %> Stars</div>

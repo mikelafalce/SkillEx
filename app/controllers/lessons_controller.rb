@@ -93,9 +93,11 @@ class LessonsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @lesson.teacher_id != current_user.id
+      if @lesson.student_id != current_user.id
        format.html { redirect_to @lesson, notice: 'Sorry, you may only edit your own lessons!' }
       elsif @lesson.update(lesson_params)
+        @lesson.confirmed_at = nil
+        @lesson.save
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
         format.json { render :show, status: :ok, location: @lesson }
       else
