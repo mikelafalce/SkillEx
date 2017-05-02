@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426181403) do
+ActiveRecord::Schema.define(version: 20170430192717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,12 @@ ActiveRecord::Schema.define(version: 20170426181403) do
     t.bigint "skill_id"
     t.bigint "teacher_id"
     t.bigint "student_id"
+    t.text "teacher_reviewing_student"
+    t.text "student_reviewing_teacher"
     t.integer "teacher_rating_student"
     t.integer "student_rating_teacher"
     t.datetime "start_time"
-    t.datetime "end_time"
+    t.integer "hours"
     t.datetime "requested_at"
     t.datetime "confirmed_at"
     t.datetime "created_at", null: false
@@ -32,12 +34,23 @@ ActiveRecord::Schema.define(version: 20170426181403) do
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.bigint "from_user_id", null: false
+    t.bigint "to_user_id", null: false
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_user_id"], name: "index_messages_on_from_user_id"
+    t.index ["to_user_id"], name: "index_messages_on_to_user_id"
+  end
+
   create_table "skills", force: :cascade do |t|
     t.bigint "teacher_id"
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar"
     t.index ["teacher_id"], name: "index_skills_on_teacher_id"
   end
 
@@ -57,8 +70,12 @@ ActiveRecord::Schema.define(version: 20170426181403) do
     t.string "first_name"
     t.string "last_name"
     t.string "avatar"
+    t.integer "points", default: 5
+    t.string "location"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "messages", "users", column: "from_user_id"
+  add_foreign_key "messages", "users", column: "to_user_id"
 end

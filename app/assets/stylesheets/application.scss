@@ -1,0 +1,76 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's 
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+.messages-container{
+  display : flex;
+  height : 200px;
+  .conversations{
+    flex : 0 0 300px;
+    text-align : left;
+    > div{
+      box-sizing : border-box;
+      padding : 12px 16px;
+      border: 1px solid #333;
+    }
+  }
+  .message-detail{
+    flex : 1;
+    max-height: 100%;
+        overflow: auto;
+        text-align: left;
+        padding: 12px 16px;
+        box-sizing: border-box;
+        border: 1px solid #333;
+        &-inner{
+          display : flex;
+          flex-direction: column;
+          max-height: 100%;
+          > div {
+            flex: 1;
+                overflow: auto;
+          }
+          > form {
+            flex : 0;
+          }
+        }
+  }
+}
+.message{
+  border-radius: 5px;
+  margin-bottom: 2px;
+  > div {
+    padding: 12px 16px;
+    box-sizing: border-box;
+    
+    display : inline-block;
+  }
+  &_received{
+    text-align : left;
+    
+    > div{
+      background : dodgerblue;
+      color : black;
+    }
+  }
+  &_sent{
+    text-align : right;
+    > div {
+      
+      background : #f2f2f2;
+      color : dodgerblue;
+
+    }
+  }
+ }

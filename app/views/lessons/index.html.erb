@@ -3,7 +3,7 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1 class="text-center" style="color:#6396e8" font-family:Ubuntu;"><em>All Lessons</em></h1>
+<h1 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">All Lessons</h1>  
 
 <div class="text-center">
 <table align="center" style="width:80%">
@@ -13,6 +13,7 @@
       <th>Skill</th>
       <th>Teacher</th>
       <th>Student</th>
+      <th>Start Time</th>
       <th>Requested At</th>
       <th>Confirmed At</th>
       <th colspan="3"></th>
@@ -25,11 +26,10 @@
         <td><%= lesson.skill %></td>
         <td><%= lesson.teacher %></td>
         <td><%= lesson.student %></td>
+        <td><%= lesson.start_time %></td>
         <td><%= lesson.requested_at %></td>
         <td><%= lesson.confirmed_at %></td>
-        <td><%= link_to 'Lesson Details', lesson, {style: "color: #6396e8"} %></td>
-        <td><%= link_to 'Edit Lesson', edit_lesson_path(lesson), {style: "color: #6396e8"} %></td>
-        <!-- <td><%= link_to 'Delete Lesson', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        <td><%= link_to 'Details', lesson, {style: "color: #6396e8"} %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,7 +38,7 @@
 <br>
 
 
-<h3><%= link_to 'New Lesson', new_lesson_path, {style: "color: #6396e8"} %></h3>
+
 
 
 

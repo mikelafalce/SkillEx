@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-5.times do User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.safe_email, password: Faker::Internet.password)
+30.times do User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.safe_email, password: Faker::Internet.password)
 end
 
 User.all.each do |user|
@@ -20,7 +20,7 @@ Skill.all.each do |skill|
     teacher_rating_student: rand(1..5), 
     student_rating_teacher: rand(1..5), 
     start_time: some_time, 
-    end_time: (some_time + (60*60)), 
+    hours: rand(1..3), 
     requested_at: (some_time - (60*60*24)*rand(1..3)), 
     confirmed_at: (some_time - (5*60*60)),
     teacher_id: skill.teacher.id,

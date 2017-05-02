@@ -1,5 +1,7 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
+  
+
   <head>
     <title>SkillEx</title>
     <%= csrf_meta_tags %>
@@ -10,21 +12,19 @@
     <!-- https://bootswatch.com/simplex/ -->
     <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css' />
     <style href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></style>
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#c99570">
   </head>
 
-  <body>
+  <body style="background-color: white;">
     <nav>
       <%= render 'layouts/header' %>
-      <% if current_user %>
-        <p>Welcome, <%= current_user.first_name %>! </p>
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Register', new_user_registration_path %>
-        <%= link_to 'Login', new_user_session_path %>
-      <% end %>
     </nav>
-    <div class='container'>
-      <p class="notice"><%= notice %></p>
+    <div align='center' class='container'>
       <p class="alert"><%= alert %></p>
       <%= yield %>
     </div>
