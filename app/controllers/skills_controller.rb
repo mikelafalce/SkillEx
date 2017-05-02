@@ -2,6 +2,7 @@
 class SkillsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_skill, only: [:show, :edit, :update, :destroy, :join, :leave]
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     @lesson = Lesson.new

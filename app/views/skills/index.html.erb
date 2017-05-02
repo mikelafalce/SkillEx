@@ -46,7 +46,7 @@
           </div>
           <div class="back invisible">            
             <h3 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">Request a Lesson Time</h3>
-            <%= render 'new_lesson_form', lesson: @lesson, skill: skill %>
+            <%= render 'new_lesson_form', lesson: @lesson, skill: skill if current_user %>
           </div>
           <div class="chat invisible">            
             <h3 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">Send a Message</h3>
@@ -71,7 +71,11 @@
           <%= button_to "View Full Details", skill,
                 :class => "view-skill btn", :method => :get %>
           <%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %>
-          <%= button_tag "Request a Lesson", :class => "request-lesson btn" %><br>
+          <%if current_user%>
+            <%= button_tag "Request a Lesson", :class => "request-lesson btn" %><br>
+          <%else%>
+            <%= button_to "Request a Lesson", skills_path, :class => "request-lesson btn" %>
+          <%end%>
           <%= button_tag "Chat with Teacher", :class => "request-chat btn" %><br>
                     
         </div>
