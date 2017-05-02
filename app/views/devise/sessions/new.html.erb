@@ -1,36 +1,59 @@
 <head><link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"></head>
-<br><br><br><br>
+<br><br>
 
-<body style="background-color: #6396e8;">
+<body class="background">
+<table>
+  <thead>
+    <tr>
+      <td class="col-md-3"></td>
+      <td class="col-md-3"></td>
+      <td class="col-md-3"></td>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="boxo"> 
+      <h1 style="color: white; padding-left: 15px;">Let's get started.</h1>
+        <p style="color: white; padding-left: 15px; font-size: medium" align="left">
+            1. Create an account, sign in.<br>
+            2. Browse our available skills.<br>
+            3. Select a skill and request a lesson.<br>
+            4. Attend the lesson and rate your experience.
+        </p>
+      </td>
+      <td>
+      </td>
+      <td class="boxw">
+        <h2 align="center" style="color: #ffa31a; font-family:Ubuntu;">SkillEx Log in</h2>
+        <div align="center">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true %>
+            </div><br>
 
-  <div align="center">
-  <h2 style="color: #ffa31a; font-family:Ubuntu;">SkillEx Log in</h2>
+            <div class="field">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, autocomplete: "off" %>
+            </div>
+            <br>
+            <% if devise_mapping.rememberable? -%>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end -%>
+            </div>
+            <div  align="center" class="actions">
+              <%= f.submit "Log in" %>
+            
+          <% end %><br>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true %>
-    </div><br>
+            <div align="center"><%= render "devise/shared/links" %></div>
+        </div>
 
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
-    <br>
-    <% if devise_mapping.rememberable? -%>
-      <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
-      </div>
-    <% end -%>
-
-    <div class="actions">
-      <%= f.submit "Log in" %>
-    </div>
-  <% end %><br>
-
-  <%= render "devise/shared/links" %>
-  </div>
-
+        </td>
+    </tbody>
+    </table>
   </body>
 
