@@ -3,7 +3,7 @@
 
 
                               
-    Your <%= @lesson.skill.title =%> lesson is confirmed at <%= @lesson.start_time =%>!
+    Your <%= @lesson.skill.title =%> lesson is confirmed at <%= @lesson.start_time.strftime("%A, %d %b %Y %l:%M %p") =%>!
     https://skillex.herokuapp.com
 
 
