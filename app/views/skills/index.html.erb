@@ -24,14 +24,11 @@
   </script>
 </head>
 
-<br><br>
-<body>
-<h1 style="color: #ffa31a; font-family:Ubuntu;" align="center">List of Skills</h1><br><br>
 
-<%= form_tag skills_path, method: :get do %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search", name: nil %>
-<% end %><br> <hr style="color: #ffa31a">
+<body>
+<h1 style="color: #ffa31a; font-family:Ubuntu;" align="center">Learn A New Skill</h1><br><br>
+
+<hr>
 
 <% @skills.each do |skill| %>
   <div class="container">
@@ -74,9 +71,16 @@
 <% end %>
 <hr>
 
+    <%= form_tag skills_path, method: :get do %>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", name: nil %>
+    <% end %><br> 
+
+    
+
 <br>
 <div align="center">
-<h3 style="color: #ffa31a"><%= link_to 'Create A New Skill', new_skill_path %></h3>
+<h3 ><%= link_to 'Create A New Skill', new_skill_path, {style: "color: #ffa31a"}%></h3>
 </div><br><br><br><br><br><br><br><br>
 
 </body>
