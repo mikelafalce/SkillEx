@@ -16,7 +16,7 @@
 <%if @requested_lessons.count > 0%>
   You have <%= @requested_lessons.count %> requested lessons <br/>
     <%@requested_lessons.each do |lesson|%>
-      start time: <%=lesson.start_time%> <br/>
+      start time: <%=lesson.start_time.strftime("%A, %d %b %Y %l:%M %p")%> <br/>
       hours: <%=lesson.hours%> <br/>
       student: <%=lesson.student.first_name%> <%=lesson.student.last_name%>
       <%=link_to 'View Lesson', lesson_path(lesson)%> <br/>
