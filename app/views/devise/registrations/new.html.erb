@@ -1,53 +1,68 @@
 <div align="center">
-<h2>Sign up</h2>
-
+<h2 style='color: #ffa31a'>Sign up</h2>
+<br />
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
+<div class='container'>
+  <div class='row' style='width: 80%'>
+    <div class='col-sm-6'>
 
-  <div class="field">
-   <%= f.label :first_name %><br />
-   <%= f.text_field :first_name %>
-  </div>
+      <div class="field">
+       <%= f.label :first_name %><br />
+       <%= f.text_field :first_name %>
+      </div>
+      <br />
+      <div class="field">
+       <%= f.label :last_name %><br />
+       <%= f.text_field :last_name %>
+      </div>
 
-  <div class="field">
-   <%= f.label :last_name %><br />
-   <%= f.text_field :last_name %>
-  </div>
+      <div class="field">
+       <%= f.label :location %><br />
+       <%= f.text_field :location, :value => @location_city %>
 
-  <div class="field">
-   <%= f.label :location %><br />
-   <%= f.text_field :location, :value => @location_city %>
+      </div>
+    </div>
+    <div class='col-sm-6'>
 
-  </div>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-    <div class="field">
-    <%= f.label :avatar %><br>
-    <%= f.file_field :avatar %>
-  </div>
+      <div class="field">
+        <%= f.label :profile_picture %><br>
+        <%= f.file_field :avatar %>
+      </div>
 
+    </div>
 
-
+ </div>
+  <br /><br /><br />
+  <style>
+    .signup {
+      background-color: #6396e8;
+      color: white;
+    }
+  </style>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", {class: 'btn signup'} %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
 </div>
