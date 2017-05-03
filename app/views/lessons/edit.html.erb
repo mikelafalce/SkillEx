@@ -1,8 +1,7 @@
 <head><link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"></head>
-<h1 class="text-center" style="color:#ffa31a; font-family:Ubuntu;">Editing Lesson</h1>
-
+<h1 class="text-center" style="color:#ffa31a; font-family:Ubuntu;">Edit Your Lesson</h1>
+<p>If your teacher already confirmed this lesson, they will have to confirm again for the new start time.</p><br>
 <%= render 'edit_form', lesson: @lesson %>
-<div class="text-center">
-<%= link_to 'View', @lesson, {style: "color: #6396e8"} %> |
-<%= link_to 'Back', lessons_path, {style: "color: #6396e8"} %>
+<div class="text-center"> <br>
+<%= link_to 'View Lesson Details', @lesson, {style: "color: #6396e8"} %>
 </div>  

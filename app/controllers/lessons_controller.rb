@@ -3,7 +3,7 @@ class LessonsController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :need_rating, only: [:lesson_rating, :add_rating]
   def index
-    @lessons = Lesson.all
+    redirect_to upcoming_lessons_path
   end
 
   def lesson_rating
@@ -11,8 +11,12 @@ class LessonsController < ApplicationController
   end
 
   def my_upcoming_lessons
-    @my_lessons_as_teacher = current_user.lessons_as_teacher.select {|l| l.start_time > DateTime.now}
-    @my_lessons_as_student = current_user.lessons_as_student.select {|l| l.start_time > DateTime.now}
+    my_lessons_as_teacher = current_user.lessons_as_teacher.select {|l| l.start_time > DateTime.now}
+    my_lessons_as_student = current_user.lessons_as_student.select {|l| l.start_time > DateTime.now}
+    @my_unconfirmed_lessons_as_teacher = my_lessons_as_teacher.select {|l| l.confirmed_at == nil}
+    @my_unconfirmed_lessons_as_student = my_lessons_as_student.select {|l| l.confirmed_at == nil}
+    @my_confirmed_lessons_as_teacher = my_lessons_as_teacher.select {|l| l.confirmed_at.class == ActiveSupport::TimeWithZone}
+    @my_confirmed_lessons_as_student = my_lessons_as_student.select {|l| l.confirmed_at.class == ActiveSupport::TimeWithZone}
   end
 
   def show
@@ -32,8 +36,6 @@ class LessonsController < ApplicationController
       @lesson.save
       UserMailer.confirm_lesson(@lesson).deliver_now!
       redirect_to @lesson, notice: 'Lesson was successfully confirmed.'
-
-  
     end
   end
 
@@ -48,7 +50,7 @@ class LessonsController < ApplicationController
       @lesson.teacher.save
 
       UserMailer.completed_lesson_notice(@lesson).deliver_now!
-      redirect_to @lesson, notice: 'Lesson was successfully completed.'
+      redirect_to upcoming_lessons_path, notice: 'Lesson was successfully completed.'
 
       redirect_to root_path   
     elsif current_user == @lesson.student
@@ -57,7 +59,7 @@ class LessonsController < ApplicationController
       @lesson.save
 
       UserMailer.completed_lesson_notice(@lesson).deliver_now!
-      redirect_to @lesson, notice: 'Lesson was successfully completed.'
+      redirect_to upcoming_lessons_path, notice: 'Lesson was successfully completed.'
       
       redirect_to root_path
     end
@@ -91,9 +93,11 @@ class LessonsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @lesson.teacher_id != current_user.id
+      if @lesson.student_id != current_user.id
        format.html { redirect_to @lesson, notice: 'Sorry, you may only edit your own lessons!' }
       elsif @lesson.update(lesson_params)
+        @lesson.confirmed_at = nil
+        @lesson.save
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
         format.json { render :show, status: :ok, location: @lesson }
       else
@@ -107,7 +111,7 @@ class LessonsController < ApplicationController
   def destroy
     @lesson.destroy
     respond_to do |format|
-      format.html { redirect_to lessons_url, notice: 'Lesson was successfully deleted.' }
+      format.html { redirect_to upcoming_lessons_path, notice: 'Lesson was successfully deleted.' }
       format.json { head :no_content }
     end
   end

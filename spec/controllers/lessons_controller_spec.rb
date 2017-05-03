@@ -20,6 +20,8 @@ RSpec.describe LessonsController, type: :controller do
         skill: skill1,
         teacher: user1,
         student: user1,
+        start_time: DateTime.now + 1,
+        hours: 1,
         confirmed_at: DateTime.now,
         )}
 

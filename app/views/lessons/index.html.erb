@@ -26,9 +26,9 @@
         <td><%= lesson.skill %></td>
         <td><%= lesson.teacher %></td>
         <td><%= lesson.student %></td>
-        <td><%= lesson.start_time %></td>
-        <td><%= lesson.requested_at %></td>
-        <td><%= @lesson.confirmed_at %></td>
+        <td><%= lesson.start_time.strftime("%A, %d %b %Y %l:%M %p") %></td>
+        <td><%= lesson.requested_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
+        <td><%= lesson.confirmed_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
         <td><%= link_to 'Details', lesson, {style: "color: #6396e8"} %></td>
       </tr>
     <% end %>

@@ -18,6 +18,32 @@
   right: 0;
   top: 0;
 }
+
+ .boxo {
+  width:400px;
+  height:200px;
+  background:#ffa31a;
+  border-radius: 25px;
+  }
+
+ .boxw {
+  width:400px;
+  height:200px;
+  background:#FFFFFF;
+  border-radius: 25px;
+ }
+
+ 
+  
+
+ .background {
+   background: url("splash.jpg") no-repeat center center fixed; 
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+ }
+ 
 .messages-container{
   display : flex;
   height : 200px;
@@ -80,3 +106,4 @@
     }
   }
  }
+ 

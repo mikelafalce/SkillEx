@@ -24,14 +24,11 @@
   </script>
 </head>
 
-<br><br>
-<body>
-<h1 style="color: #ffa31a; font-family:Ubuntu;" align="center">List of Skills</h1><br><br>
 
-<%= form_tag skills_path, method: :get do %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search", name: nil %>
-<% end %>
+<body>
+<h1 style="color: #ffa31a; font-family:Ubuntu;" align="center">Learn A New Skill</h1><br><br>
+
+<hr>
 
 <% @skills.each do |skill| %>
   <div class="container">
@@ -48,29 +45,56 @@
           <div class="front"><h5><%= skill.title %></h5><br/><%= skill.description %><br/>
           </div>
           <div class="back invisible">            
-            <h1 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">Request a Lesson Time</h1>
-            <%= render 'new_lesson_form', lesson: @lesson, skill: skill %>
+            <h3 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">Request a Lesson Time</h3>
+            <%= render 'new_lesson_form', lesson: @lesson, skill: skill if current_user %>
           </div>
+
+          <div class="chat invisible">            
+            <h3 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">Send a Message</h3>
+            <p>"Hello. I am interested in requesting a lesson."</p>
+            <form>
+              <input type='text'></input>
+            </form>
+                    <button
+            id='chat-<%= skill.id %>'
+            data-title='<%= skill.title %>'
+            data-skill-id='<%= skill.id %>'
+            data-teacher-id='<%= skill.teacher_id %>'
+            data-behavior='skill-chat'>Send Standard Message</button>
+            <br><br>
+            <%= link_to "Open Chat Room", hello_world_path(teacher_id: skill.teacher_id),
+                :class => "request-chat btn" %>
+          </div>
+          <br><br>
         </div>
 
         <div class="col-sm-4"> 
+          <br><br><br>
           <%= button_to "View Full Details", skill,
                 :class => "view-skill btn", :method => :get %>
           <%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %>
-          <%= button_tag "Request a Lesson", :class => "request-lesson btn" %>
-          <%= link_to "Chat with Teacher", hello_world_path(teacher_id: skill.teacher_id),
-                :class => "request-chat btn" %>
-
+          <%if current_user%>
+            <%= button_tag "Request a Lesson", :class => "request-lesson btn" %><br>
+          <%else%>
+            <%= button_to "Request a Lesson", skills_path, :class => "request-lesson btn" %>
+          <%end%>
+          <%= button_tag "Chat with Teacher", :class => "request-chat btn" %><br>
+                    
         </div>
       </div> 
     </div>
   </div>
 <% end %>
+<hr>
+    <%= form_tag skills_path, method: :get do %>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", name: nil %>
+    <% end %><br> 
 
 <br>
 <div align="center">
-<h3><%= link_to 'New Skill', new_skill_path %></h3>
-</div><br><br><br><br>
+<h3 ><%= link_to 'Create A New Skill', new_skill_path, {style: "color: #ffa31a"}%></h3>
+</div><br><br><br><br><br><br><br><br>
 
 </body>
 
@@ -80,13 +104,31 @@
       $(".back").each(function() {
               $(this).hide();
       });
+      $(".chat").each(function() {
+              $(this).hide();
+      });
       $(".request-lesson").click(function(){
           $(this).parent().parent().find('.front').fadeOut(function(){
+            $(this).parent().find('.chat').hide()
             $(this).parent().find('.back').removeClass('invisible')
             $(this).parent().find('.back').fadeIn()
           })
           $(this).parent().parent().mouseleave(function(){
+            $(this).find('.chat').hide()
             $(this).find('.back').fadeOut(function(){
+              $(this).parent().find('.front').fadeIn()
+            })
+          })
+      });
+      $(".request-chat").click(function(){
+          $(this).parent().parent().find('.front').fadeOut(function(){
+            $(this).parent().find('.back').hide()
+            $(this).parent().find('.chat').removeClass('invisible')
+            $(this).parent().find('.chat').fadeIn()
+          })
+          $(this).parent().parent().mouseleave(function(){
+            $(this).find('.back').hide()
+            $(this).find('.chat').fadeOut(function(){
               $(this).parent().find('.front').fadeIn()
             })
           })

@@ -1,14 +1,14 @@
 example_id                                                 | status  | run_time        |
 ---------------------------------------------------------- | ------- | --------------- |
-./spec/controllers/home_controller_spec.rb[1:1:1:1]        | passed  | 0.01167 seconds |
-./spec/controllers/home_controller_spec.rb[1:1:1:2]        | passed  | 0.61394 seconds |
-./spec/controllers/home_controller_spec.rb[1:1:2:1]        | passed  | 1.43 seconds    |
-./spec/controllers/home_controller_spec.rb[1:1:2:2]        | pending | 0.00003 seconds |
-./spec/controllers/lessons_controller_spec.rb[1:1:1:1]     | passed  | 0.03591 seconds |
-./spec/controllers/lessons_controller_spec.rb[1:1:1:2]     | passed  | 0.09803 seconds |
+./spec/controllers/home_controller_spec.rb[1:1:1:1]        | passed  | 0.01409 seconds |
+./spec/controllers/home_controller_spec.rb[1:1:1:2]        | passed  | 0.02499 seconds |
+./spec/controllers/home_controller_spec.rb[1:1:2:1]        | passed  | 0.03155 seconds |
+./spec/controllers/home_controller_spec.rb[1:1:3:1]        | passed  | 0.02532 seconds |
+./spec/controllers/lessons_controller_spec.rb[1:1:1:1]     | passed  | 0.17962 seconds |
+./spec/controllers/lessons_controller_spec.rb[1:1:1:2]     | passed  | 0.0384 seconds  |
 ./spec/controllers/lessons_controller_spec.rb[1:1:1:3]     | pending | 0.00001 seconds |
-./spec/controllers/registrations_controller_spec.rb[1:1:1] | passed  | 0.11315 seconds |
+./spec/controllers/registrations_controller_spec.rb[1:1:1] | passed  | 0.64089 seconds |
 ./spec/controllers/skills_controller_spec.rb[1:1:1]        | failed  | 0.01465 seconds |
 ./spec/models/lesson_spec.rb[1:1]                          | pending | 0.00004 seconds |
-./spec/models/message_spec.rb[1:1]                         | pending | 0.00001 seconds |
+./spec/models/message_spec.rb[1:1]                         | pending | 0.00002 seconds |
 ./spec/models/skill_spec.rb[1:1]                           | pending | 0.00002 seconds |
