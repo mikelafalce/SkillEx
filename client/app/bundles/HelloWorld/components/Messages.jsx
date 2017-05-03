@@ -14,6 +14,12 @@ var MessengerWindow = React.createClass({
    },
   componentDidMount: function () {
     document.addEventListener('messenger', this._listenToMessenger)
+    const re = /=(\d+)/
+    const passInId = document.location.search.match(re)
+    if (passInId) {
+      const id = Number(passInId[1])
+      this.showConversation({userId : id})
+    }
   },
 
   componentWillUnmount: function () {
@@ -21,12 +27,18 @@ var MessengerWindow = React.createClass({
   },
 
   _listenToMessenger: function () {
-    this.setState({ messages: App.messenger ? App.messenger.messages : [] })
+    //activate id in messages.js
+    this.setState({
+      messages: App.messenger ? App.messenger.messages : [],
+      messagesById: App.messenger.messages[this.state.recipientId]
+    })
+    this.refs.scrollWindow.scrollTop = 1000000000
   },
 
   submitNewMessage: function (e) {
     e.preventDefault();
     App.messenger.send_message(this.state.recipientId, this.state.messageValue)
+    this.refs.input.value = ""
   },
 
   handleMessageChange: function (e) {
@@ -44,9 +56,10 @@ var MessengerWindow = React.createClass({
   },
 
   showConversation :  function(conversation){
-    const {userId} = conversation;
-    const messagesById = this.state.messages[userId];
+    const userId = conversation.userId;
+    const messagesById = this.state.messages[userId] || [];
     this.setState({messagesById: messagesById, show:true, recipientId:userId});
+    this.refs.input.value = ""
   },
 
   render: function () {
@@ -73,21 +86,21 @@ var MessengerWindow = React.createClass({
                 closeOnOuterClick={true}
                 show={this.state.show}
                 onClose={this.close}>
-                <div>
-                <a onClick={this.close}>Close this modal</a>
+                <div ref="scrollWindow">
+                <a className="closeWindow" onClick={this.close}>Close</a>
                 {
                   this.state.messagesById.map(function(message) {  
                     console.info(message,currentUserId);
                     const mClassName = "message " + (message.from_user_id == currentUserId ? "message_sent" : "message_received")
                     return <div className={mClassName}><div>
-                        {message.body} from {message.from_user.first_name} to {message.to_user.first_name}
+                        {message.body} (from {message.from_user.first_name} to {message.to_user.first_name})
                       </div>
                     </div>
                   })
   }
                 </div>
                 <form onSubmit={this.submitNewMessage}>
-                  <input type="text" onChange={this.handleMessageChange}/>
+                  <input ref="input" type="text" onChange={this.handleMessageChange}/>
                   <input value="Submit" type="submit"/>
                 </form>
 

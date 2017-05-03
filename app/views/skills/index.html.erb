@@ -48,6 +48,7 @@
             <h3 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">Request a Lesson Time</h3>
             <%= render 'new_lesson_form', lesson: @lesson, skill: skill if current_user %>
           </div>
+
           <div class="chat invisible">            
             <h3 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">Send a Message</h3>
             <p>"Hello. I am interested in requesting a lesson."</p>
@@ -59,9 +60,10 @@
             data-title='<%= skill.title %>'
             data-skill-id='<%= skill.id %>'
             data-teacher-id='<%= skill.teacher_id %>'
-            data-behavior='skill-chat'>Send Message</button>
+            data-behavior='skill-chat'>Send Standard Message</button>
             <br><br>
-            <%= link_to 'Go to Chat Room', hello_world_path %>
+            <%= link_to "Open Chat Room", hello_world_path(teacher_id: skill.teacher_id),
+                :class => "request-chat btn" %>
           </div>
           <br><br>
         </div>
