@@ -18,15 +18,16 @@
 
   <div>
     <label for="description">Description</label><br />
-    <input type="text" name="skill[description]" id="description" value="<%= skill.description %>" required />
+    <textarea rows="4" cols="50" name="skill[description]" id="description" value="<%= skill.description %>" required ></textarea>
   </div><br />
 
   <div  class="field">
-    <%= f.label :avatar %>
+    <%= f.label :skill_picture %>
     <%= f.file_field :avatar %>
   </div>
+  <br />
 
   <div align="center" class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "request-chat btn" %>
   </div>
 <% end %>

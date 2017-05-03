@@ -5,22 +5,34 @@
 <div align="center">
   <p id="notice"><%= notice %></p>
   <h1 style="color: #ffa31a; font-family:Ubuntu;"><%= @skill.title %></h1><br>
-  <%= image_tag @skill.avatar.thumb.url if @skill.avatar.url %>
-  <br><br>
-  <div>Teacher: </div>
-  <div><%= @teacher.first_name %></div> <br>
-
-  <div>Description: </div>
-  <div><%= @skill.description %></div><br>
-
+  <div class='container'>
+    <div class='row'>
+      <div class="col-sm-4" align='left'>
+        <%if @skill.avatar.url%>
+          <%= image_tag @skill.avatar.normal.url %>
+        <%else%>
+          <%= image_tag("/images/generic_skill.jpg") %>
+        <%end%>
+      <br><br>
+      </div>
+      <div class="col-sm-4">
+        <div>Teacher: </div>
+        <div><%= @teacher.first_name %></div> <br>
+        <div><%= image_tag @teacher.avatar.thumb.url if @teacher.avatar.url %></div>
+      </div>
+      <h3>
+        <%= link_to 'Request a Lesson', new_lesson_path(skill: @skill) %><br><br>
+      </h3>
+      <%= link_to 'Edit Skill', edit_skill_path(@skill) if current_user == @teacher %> <br>
+      <%= link_to 'Go Back', my_skills_path if current_user == @teacher %> <br>
+    </div>
+    <div class='row'>
+      <div><h3>Description:</h3></div>
+      <div style='width: 80%'><%= @skill.description %></div><br>
+    </div>
+  </div>
   <h3>
-    <%= link_to 'Request a Lesson', new_lesson_path(skill: @skill) %><br><br>
-  </h3>
-  <%= link_to 'Edit Skill', edit_skill_path(@skill) if current_user == @teacher %> |
-  <%= link_to 'Go Back', my_skills_path %> <br>
-
-  <h3>
-    Student Reviews
+    Student Reviews:
   </h3>
   <%@reviewed_lessons.each do |lesson|%>
     <div>Student: <%= lesson.student.first_name %></div> 
@@ -31,6 +43,7 @@
     <div><%= lesson.student_rating_teacher %> Stars</div>
     <div><%= lesson.student_reviewing_teacher %></div> <br/>
   <%end%>
+  <%= 'Looks like nobody has left a review yet.' if @reviewed_lessons.count == 0 %>
 
 
 </div>

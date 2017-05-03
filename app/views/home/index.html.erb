@@ -1,28 +1,35 @@
-<br/>
-
-
 <head><link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"></head>
 <script>
   var currentUserId = <%= @current_user_id %>;
 </script>
 <div align="center">
-<h2 style="color: #ffa31a; font-family:Ubuntu;">To teach or to learn? That is the question.</h2> <br/><br/>
-
-<% if current_user.avatar.url %>	
- 	<%= image_tag current_user.avatar.normal.url %><br>
- <% else %>
- 	<%= image_tag "/images/generic.jpeg" %><br>
-<%end%><br>
-<%if @requested_lessons.count > 0%>
-  You have <%= @requested_lessons.count %> requested lessons <br/>
-    <%@requested_lessons.each do |lesson|%>
-      start time: <%=lesson.start_time.strftime("%A, %d %b %Y %l:%M %p")%> <br/>
-      hours: <%=lesson.hours%> <br/>
-      student: <%=lesson.student.first_name%> <%=lesson.student.last_name%>
-      <%=link_to 'View Lesson', lesson_path(lesson)%> <br/>
-    <%end%>
-<%end%>
-
+  <h2 style="color: #ffa31a; font-family:Ubuntu;">Welcome to Skillex, <%= current_user.first_name %>!</h2> <br/>
+  <div class='container'>
+      <div class='row'>
+      <div class='col-sm-6'>
+        <% if current_user.avatar.url %>	
+         	<%= image_tag current_user.avatar.normal.url, {style: "border-radius: 25px"} %><br>
+         <% else %>
+         	<%= image_tag "/images/generic.jpeg", {style: "border-radius: 25px"} %><br>
+        <%end%><br>
         <small style="color: transparent">Welcome to SkillEx, <%= current_user.first_name %>! </small>
-
+      </div>
+      <div class='col-sm-6'>
+      <%if @requested_lessons.count > 0%>
+        <h3>You have <%= @requested_lessons.count %> requested <%= @requested_lessons.count == 1 ? 'lesson' : 'lessons' %></h3> <br/>
+        <%@requested_lessons.each do |lesson|%>
+          <div class="card" style="background-color: white; border-radius: 25px; padding: 8px; overflow: hidden; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin-bottom: 50px">
+            Start time: <%=lesson.start_time.strftime("%A, %d %b %Y %l:%M %p")%> <br/>
+            Hours: <%=lesson.hours%> <br/>
+            Student: <%=lesson.student.first_name%> <%=lesson.student.last_name%>
+            <%=link_to 'View Lesson', lesson_path(lesson)%> <br/>
+            <%= link_to 'Confirm', confirm_lesson_path(lesson), {style: "color: #6396e8"} if lesson.confirmed_at == nil && current_user == lesson.teacher%> 
+          </div>
+        <%end%>
+      <%else%>
+        <h3>When you have lesson requests to confirm, they will show up here!</h3>
+      <%end%>
+      </div>
+    </div>
+  </div>
 </div>

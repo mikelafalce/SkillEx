@@ -1,5 +1,10 @@
 <head><link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"></head>
-
+<style type="text/css">
+td
+{
+    padding:0 15px 0 15px;
+}
+</style>
 
 <body style="background-color: #6396e8;">
 <p id="notice"><%= notice %></p>
@@ -36,7 +41,6 @@
           <td><%= lesson.requested_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
           <td><%= lesson.confirmed_at==nil ? "Pending" : lesson.confirmed_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
           <td><%= link_to 'Lesson Details', lesson, {style: "color: #6396e8"} %></td>
-          <td><%= link_to 'Edit Lesson', edit_lesson_path(lesson), {style: "color: #6396e8"} %></td>
           <!-- <td><%= link_to 'Cancel Lesson', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
         </tr  >
       <% end %>
@@ -106,7 +110,6 @@
           <td><%= lesson.requested_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
           <td><%= lesson.confirmed_at==nil ? "Pending" : lesson.confirmed_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
           <td><%= link_to 'Lesson Details', lesson, {style: "color: #6396e8"} %></td>
-          <td><%= link_to 'Edit Lesson', edit_lesson_path(lesson), {style: "color: #6396e8"} %></td>
           <!-- <td><%= link_to 'Cancel Lesson', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
         </tr  >
       <% end %>
@@ -145,5 +148,8 @@
       <% end %>
       </tbody>
     </table>
+    <br /><br /><br /><br /><br />
+    <h3><%= link_to 'View Completed Lessons', completed_lessons_path, {style: "color: #ffa31a"} %></h3>
+    <br /><br /><br /><br /><br />
   </div>
 </body>

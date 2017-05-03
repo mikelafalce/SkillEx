@@ -19,6 +19,11 @@ class LessonsController < ApplicationController
     @my_confirmed_lessons_as_student = my_lessons_as_student.select {|l| l.confirmed_at.class == ActiveSupport::TimeWithZone}
   end
 
+  def my_completed_lessons
+    @my_completed_lessons_as_teacher = current_user.lessons_as_teacher.select {|l| l.start_time < DateTime.now}
+    @my_completed_lessons_as_student = current_user.lessons_as_student.select {|l| l.start_time < DateTime.now}
+  end
+
   def show
   end
 
