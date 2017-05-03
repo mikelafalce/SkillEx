@@ -1,5 +1,21 @@
 
-<br><br><br><br>
+<style>
+  .request-lesson {
+    color: white;
+    background-color: orange;
+  }
+  .request-chat {
+    color: white;
+    background-color: skyblue;
+  }
+  .view-skill {
+    color: white;
+    background-color: green;
+  }
+  .invisible {
+    visibility: hidden;
+  }
+</style>
 
 <head>
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
@@ -7,33 +23,35 @@
 
 <body style="background-color: #6396e8;">
 
-<h1 style="color: #ffa31a; font-family:Ubuntu;">My Skills</h1>
+<h1 style="color: #ffa31a; font-family:Ubuntu;">My Skills</h1> <br>
 
-<table>
-  <thead>
-    <tr >
-      <th style="padding: 0px 25px 0px 25px;">Skill Image</th>
-      <th style="padding: 0px 25px 0px 25px;">Title</th>
-      <th style="padding: 0px 25px 0px 25px;">Description</th>
+<% @skills.each do |skill| %>
+  <div class="container">
+    <div class="card" style="background-color: white; border-radius: 25px; height: 100px; padding-left: 0px; overflow: hidden; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin-bottom: 50px; width: 80%">
+      <div class="row">
+        <div class="col-sm-4" align='left'>
+            <%if skill.avatar.url%>
+              <%= image_tag skill.avatar.thumb.url %>      
+            <%else%>
+              <%= image_tag("/images/generic_skill.jpg") %>
+            <%end%>
+        </div>
+        <div class='col-sm-4'>
+          <div class="front"><h5><%= skill.title %></h5><br/><%= skill.description %><br/>
+          </div>
+        </div>
 
-      <th></th>
-    </tr>
-  </thead>
-  <br><br>
+        <div class="col-sm-4"> 
+          <br>
+          <%= button_to "View Full Details", skill,
+                :class => "view-skill btn", :method => :get %>
+          <%= link_to 'Edit', edit_skill_path(skill), :class => "request-chat btn" if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %>
+        </div>
+      </div> 
+    </div>
+  </div>
+<% end %>
 
-  <tbody>
-    <% @skills.each do |skill| %>
-      <tr>
-        <td style="padding: 0px 25px 0px 25px;"><%= image_tag skill.avatar.thumb.url if skill.avatar.url %></td>
-        <td style="padding: 0px 25px 0px 25px;"><%= skill.title %></td>
-        <td style="padding: 0px 25px 0px 25px;"><%= skill.description %></td>
-        <td style="padding: 0px 25px 0px 25px;"><%= link_to 'View', skill %></td>
-        <td style="padding: 0px 25px 0px 25px;"><%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %></td>
-        <td style="padding: 0px 25px 0px 25px;"><%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <br>
 <div style=" font-size: medium">

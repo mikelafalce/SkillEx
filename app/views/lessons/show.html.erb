@@ -2,7 +2,7 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">My Lesson</h1>
+<h1 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">Lesson Details</h1>
 <div class="text-center" >
 <p>
   <strong>Skill:</strong>
@@ -40,5 +40,5 @@
 </p><br>
 
 <%= link_to 'Confirm', confirm_lesson_path(@lesson), {style: "color: #6396e8"} if @lesson.confirmed_at == nil && current_user == @lesson.teacher%> 
-<%= link_to 'Edit', edit_lesson_path(@lesson), {style: "color: #6396e8"} %>
+<%= link_to 'Edit', edit_lesson_path(@lesson), {style: "color: #6396e8"} if @lesson.student == current_user %>
 </div>
