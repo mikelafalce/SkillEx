@@ -60,12 +60,6 @@
           <%= button_tag "Request a Lesson", :class => "request-lesson btn" %>
           <%= link_to "Chat with Teacher", hello_world_path(teacher_id: skill.teacher_id),
                 :class => "request-chat btn" %>
-                    <button
-            id='chat-<%= skill.id %>'
-            data-title='<%= skill.title %>'
-            data-skill-id='<%= skill.id %>'
-            data-teacher-id='<%= skill.teacher_id %>'
-            data-behavior='skill-chat'>Chat</button>
 
         </div>
       </div> 
