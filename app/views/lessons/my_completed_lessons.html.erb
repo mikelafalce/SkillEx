@@ -36,8 +36,6 @@
           <td><%= lesson.requested_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
           <td><%= lesson.confirmed_at==nil ? "Pending" : lesson.confirmed_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
           <td><%= link_to 'Lesson Details', lesson, {style: "color: #6396e8"} %></td>
-          <td><%= link_to 'Edit Lesson', edit_lesson_path(lesson), {style: "color: #6396e8"} %></td>
-          <!-- <td><%= link_to 'Cancel Lesson', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
         </tr  >
       <% end %>
     </tbody>
@@ -69,8 +67,6 @@
           <td><%= lesson.requested_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
           <td><%= lesson.confirmed_at==nil ? "Pending" : lesson.confirmed_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
           <td><%= link_to 'Lesson Details', lesson, {style: "color: #6396e8"} %></td>
-          <td><%= link_to 'Edit Lesson', edit_lesson_path(lesson), {style: "color: #6396e8"} %></td>
-          <!-- <td><%= link_to 'Cancel Lesson', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
         </tr  >
       <% end %>
       </tbody>
