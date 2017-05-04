@@ -1,6 +1,6 @@
 unless Rails.env.test?
   CarrierWave.configure do |config|
-    storage :fog
+    config.storage = :fog
     config.fog_provider = 'fog/aws'                        # required
     config.fog_credentials = {
       provider:              'AWS',                        # required
