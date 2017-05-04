@@ -6,9 +6,9 @@ CarrierWave.configure do |config|
     :provider               => 'AWS',                        # required
     :aws_access_key_id      => 'AKIAJ47Q7LLUGB4RDA7A',                        # required
     :aws_secret_access_key  => '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',                     # required
-    :region                 => 'us-west-2',                  # optional, defaults to 'us-east-1'
-    :host                   => 's3.amazonaws',             # optional, defaults to nil
-    :endpoint               => 'https://s3.amazonaws.com/skill-ex' # optional, defaults to nil
+    :region                 => 'us-east-2',                  # optional, defaults to 'us-east-1'
+    :host                   => 's3.amazonaws.com',             # optional, defaults to nil
+    :endpoint               => 'https://s3.us-east-2.amazonaws.com/skill-ex' # optional, defaults to nil
   }
   config.fog_directory  = 'directory'                             # required
   config.fog_public     = false                                   # optional, defaults to true
