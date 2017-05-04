@@ -1,0 +1,1 @@
+CarrierwaveHeroku::Application.config.secret_token = ''
