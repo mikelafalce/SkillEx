@@ -16,9 +16,9 @@ class ApplicationController < ActionController::Base
     end
 
     if unrated_teacher_lessons && unrated_teacher_lessons.count > 0
-      redirect_to lesson_rating_path(unrated_teacher_lessons.first)
+      redirect_to lesson_rating_path(unrated_teacher_lessons.first), notice: 'Please rate your lesson before continuing.'
     elsif unrated_student_lessons && unrated_student_lessons.count > 0
-      redirect_to lesson_rating_path(unrated_student_lessons.first)
+      redirect_to lesson_rating_path(unrated_student_lessons.first), notice: 'Please rate your lesson before continuing.'
     end
   end
 
