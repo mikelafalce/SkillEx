@@ -28,7 +28,7 @@
             <%end%>
         </div>
         <div class='col-sm-4'>
-          <div class="front"><h5><%= skill.title %></h5><br/><%= skill.description %><br/>
+          <div class="front"><h4><%= skill.title %></h4><br/><%= simple_format(skill.description) %><br/>
           </div>
           <div class="back invisible">            
             <h3 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">Request a Lesson Time</h3>
@@ -55,7 +55,6 @@
           <br><br><br>
           <%= button_to "View Full Details", skill,
                 :class => "view-skill btn", :method => :get %>
-          <%= link_to 'Edit', edit_skill_path(skill) if current_user == skill.teacher %> <%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' } if current_user == skill.teacher %>
           <%if current_user%>
             <%= button_tag "Request a Lesson", :class => "request-lesson btn" %><br>
           <%else%>

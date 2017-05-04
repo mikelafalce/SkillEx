@@ -10,9 +10,9 @@ class SkillsController < ApplicationController
       @current_user_id = current_user.id
     end
     if params[:search]
-      @skills = Skill.search(params[:search])
+      @skills = Skill.search(params[:search]).limit(30)
     else
-      @skills = Skill.all
+      @skills = Skill.order(id: :desc).limit(30)
     end
   end
 
