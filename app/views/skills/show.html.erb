@@ -35,15 +35,27 @@
     Student Reviews:
   </h3>
   <%@reviewed_lessons.each do |lesson|%>
-    <div>Student: <%= lesson.student.first_name %></div> 
+    <div class="card col-sm-6" style="background-color: white; border-radius: 25px; padding: 8px; overflow: hidden; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin-bottom: 50px">
+      <div>Student: <%= lesson.student.first_name %></div> 
 
-    <div>Lesson Date: <%= lesson.start_time.strftime("%A, %d %b %Y %l:%M %p") %></div> 
+      <div>Lesson Date: <%= lesson.start_time.strftime("%A, %d %b %Y %l:%M %p") %></div> 
 
-    <div>Review: </div>
-    <div><%= lesson.student_rating_teacher %> Stars</div>
-    <div><%= lesson.student_reviewing_teacher %></div> <br/>
+      <div class="star-rating" data-score= '<%= lesson.student_rating_teacher %>' ></div>
+      <div>Review: </div>
+      <div><%= lesson.student_reviewing_teacher %></div> <br/>
+    </div>
   <%end%>
   <%= 'Looks like nobody has left a review yet.' if @reviewed_lessons.count == 0 %>
 
   <br /><br /><br /><br /><br />
 </div>
+
+<script>
+  $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+</script>
