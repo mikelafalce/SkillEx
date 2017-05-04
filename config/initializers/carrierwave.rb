@@ -1,6 +1,5 @@
 unless Rails.env.test?
   CarrierWave.configure do |config|
-    config.storage = :fog
     config.fog_provider = 'fog/aws'                        # required
     config.fog_credentials = {
       provider:              'AWS',                        # required
@@ -13,5 +12,6 @@ unless Rails.env.test?
     config.fog_directory  = 'skill-ex'                          # required
     config.fog_public     = false                                        # optional, defaults to true
     config.fog_attributes = { cache_control: "public, max-age=#{365.day.to_i}" } # optional, defaults to {}
+    config.storage = :fog
   end
 end
