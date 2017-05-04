@@ -1,1 +1,1 @@
-CarrierwaveHeroku::Application.config.secret_token = ''
+# CarrierwaveHeroku::Application.config.secret_token = ''
