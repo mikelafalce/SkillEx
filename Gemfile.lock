@@ -360,6 +360,7 @@ GEM
       execjs (~> 2.5)
       rails (>= 3.2)
       rainbow (~> 2.1)
+    redis (3.3.3)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -465,6 +466,7 @@ DEPENDENCIES
   rails (~> 5.1.0.rc1)
   rails-controller-testing
   react_on_rails (~> 6)
+  redis (~> 3.0)
   rspec-rails
   sass-rails!
   selenium-webdriver
