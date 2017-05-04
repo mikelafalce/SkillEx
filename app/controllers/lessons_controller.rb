@@ -46,7 +46,7 @@ class LessonsController < ApplicationController
 
   def add_rating
     if current_user == @lesson.teacher && @lesson.teacher_rating_student == nil
-      @lesson.teacher_rating_student = lesson_params[:rating].to_i
+      @lesson.teacher_rating_student = params[:score].to_i
       @lesson.teacher_reviewing_student = lesson_params[:review]
       @lesson.save
       @lesson.student.points -= @lesson.hours
@@ -57,17 +57,19 @@ class LessonsController < ApplicationController
       UserMailer.completed_lesson_notice(@lesson).deliver_now!
       redirect_to upcoming_lessons_path, notice: 'Lesson was successfully completed.'
     elsif current_user == @lesson.teacher
-      @lesson.teacher_rating_student = lesson_params[:rating].to_i
+      @lesson.teacher_rating_student = params[:score].to_i
+      @lesson.save
       redirect_to upcoming_lessons_path, notice: 'Rating was successfully changed.'
     elsif current_user == @lesson.student && @lesson.student_rating_teacher == nil
-      @lesson.student_rating_teacher = lesson_params[:rating].to_i
+      @lesson.student_rating_teacher = params[:score].to_i
       @lesson.student_reviewing_teacher = lesson_params[:review]
       @lesson.save
 
       UserMailer.completed_lesson_notice(@lesson).deliver_now!
       redirect_to upcoming_lessons_path, notice: 'Lesson was successfully completed.'
     elsif current_user == @lesson.student
-      @lesson.student_rating_teacher = lesson_params[:rating].to_i
+      @lesson.student_rating_teacher = params[:score].to_i
+      @lesson.save
       redirect_to upcoming_lessons_path, notice: 'Rating was successfully changed.'
     end
   end
