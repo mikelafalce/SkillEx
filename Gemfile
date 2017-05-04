@@ -26,6 +26,7 @@ gem 'jquery-ui-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'carrierwave', '~> 1.0'
+gem 'fog-aws'
 gem 'mini_magick'
 gem 'devise'
 gem 'image_magick'
