@@ -7,3 +7,4 @@ test:
 production:
   adapter: redis
   url: <%= ENV['REDISTOGO_URL'] %>
+  channel_prefix: SkillEx_production
