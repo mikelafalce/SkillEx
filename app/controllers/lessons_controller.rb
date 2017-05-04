@@ -45,7 +45,7 @@ class LessonsController < ApplicationController
   end
 
   def add_rating
-    if current_user == @lesson.teacher
+    if current_user == @lesson.teacher && @lesson.teacher_rating_student == nil
       @lesson.teacher_rating_student = lesson_params[:rating].to_i
       @lesson.teacher_reviewing_student = lesson_params[:review]
       @lesson.save
@@ -56,15 +56,19 @@ class LessonsController < ApplicationController
 
       UserMailer.completed_lesson_notice(@lesson).deliver_now!
       redirect_to upcoming_lessons_path, notice: 'Lesson was successfully completed.'
-
-    elsif current_user == @lesson.student
+    elsif current_user == @lesson.teacher
+      @lesson.teacher_rating_student = lesson_params[:rating].to_i
+      redirect_to upcoming_lessons_path, notice: 'Rating was successfully changed.'
+    elsif current_user == @lesson.student && @lesson.student_rating_teacher == nil
       @lesson.student_rating_teacher = lesson_params[:rating].to_i
       @lesson.student_reviewing_teacher = lesson_params[:review]
       @lesson.save
 
       UserMailer.completed_lesson_notice(@lesson).deliver_now!
       redirect_to upcoming_lessons_path, notice: 'Lesson was successfully completed.'
-      
+    elsif current_user == @lesson.student
+      @lesson.student_rating_teacher = lesson_params[:rating].to_i
+      redirect_to upcoming_lessons_path, notice: 'Rating was successfully changed.'
     end
   end
 
@@ -96,7 +100,9 @@ class LessonsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @lesson.student_id != current_user.id
+      if @lesson.start_time + @lesson.hours*60*60 < DateTime.now
+       format.html { redirect_to @lesson, notice: "Sorry, you can't edit past lessons!" }
+      elsif @lesson.student_id != current_user.id
        format.html { redirect_to @lesson, notice: 'Sorry, you may only edit your own lessons!' }
       elsif @lesson.update(lesson_params)
         @lesson.confirmed_at = nil
