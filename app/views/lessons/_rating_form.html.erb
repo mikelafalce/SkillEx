@@ -37,35 +37,30 @@
     <%= lesson.hours %>
   </div>
 
-  <div class="field" >
-
-    <%= f.radio_button(:rating, "1") %>
-    <%= f.label("1") %>
-
-    <%= f.radio_button(:rating, "2") %>
-    <%= f.label("2") %>
-
-    <%= f.radio_button(:rating, "3") %>
-    <%= f.label("3") %>
-
-    <%= f.radio_button(:rating, "4") %>
-    <%= f.label("4") %>
-
-    <%= f.radio_button(:rating, "5") %>
-    <%= f.label("5") %>
-  </div>
-
+  <div id="user_star"></div> <br>
 
   <%= hidden_field_tag 'skill', @skill.id %>
+  <br>
 
-   <div class="actions">
-    <%= f.submit %>
-  </div>
+  <div class="actions">
+    <%= f.submit class: 'btn request-lesson' %>
+  </div> <br>
 
   <div class="field" >
 
-    <%= f.text_area :review %>
+    <%= f.text_area :review, cols: 50, value: current_user == lesson.teacher ? lesson.teacher_reviewing_student : lesson.student_reviewing_teacher %>
     <%= f.label("Text Review (optional)") %>
 
   </div>
 <% end %>
+
+<script>
+  $('#user_star').raty({
+    score: <%= current_user == @lesson.teacher ? (@lesson.teacher_rating_student ||= 0) : (@lesson.student_rating_teacher ||= 0 ) %>,
+    path: '/assets/large',
+    click: function(score, evt) {
+      $("#rating_field").val(score);
+    }
+  });
+</script>
+

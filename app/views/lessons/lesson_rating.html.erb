@@ -2,17 +2,18 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">Rate My Lesson</h1>
+<h1 class="text-center" style="color: #ffa31a; font-family:Ubuntu;">Rate Your Experience</h1>
+<%= render 'rating_form', lesson: @lesson %>
 <div class='container'>
-  <div class='row'>
-    <div class="col-sm-4" align='left'>
+  <div class='row' style='width:80%'>
+    <div class="col-sm-6" align='left'>
         <%if @lesson.skill.avatar.url%>
           <%= image_tag @lesson.skill.avatar.normal.url %>      
         <%else%>
           <%= image_tag("/images/generic_skill.jpg") %>
         <%end%>
     </div>
-    <div class='col-sm-4'>
+    <div class='col-sm-6'>
       <div class="text-center" style="color:#6396e8;">
       <br><br><br><br>
       <p>
@@ -22,7 +23,7 @@
 
       <p>
         <strong>Start Time</strong>
-        <%= @lesson.start_time %>
+        <%= @lesson.start_time.strftime("%A, %d %b %Y %l:%M %p") %>
       </p>
 
       <p>
@@ -39,8 +40,8 @@
 </div>
 <p>
   <strong>Rate Your Experience</strong>
+
   
-  <%= render 'rating_form', lesson: @lesson %>
 
 
 </p>

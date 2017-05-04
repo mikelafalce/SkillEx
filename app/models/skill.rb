@@ -10,10 +10,10 @@ class Skill < ApplicationRecord
   end
 
   def average_rating
-    ratings_array = self.lessons.pluck(:student_rating_teacher)
+    ratings_array = self.lessons.pluck(:student_rating_teacher) - [nil]
     if ratings_array.length == 0
       return nil
     end
-    ratings_array.sum / ratings_array.length
+    ratings_array.sum / ratings_array.length.to_d
   end
 end
