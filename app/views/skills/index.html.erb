@@ -1,6 +1,6 @@
 <head>
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-  <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
   <script>
       var currentUserId = <%= @current_user_id %>
   </script>
@@ -52,7 +52,9 @@
         </div>
 
         <div class="col-sm-4"> 
-          <br><br><br>
+          <br>
+          <div class="star-rating" data-score= '<%= skill.average_rating %>' ></div>
+          <br><br>
           <%= button_to "View Full Details", skill,
                 :class => "view-skill btn", :method => :get %>
           <%if current_user%>
@@ -115,5 +117,13 @@
             })
           })
       });
+      $('.star-rating').raty({
+          path: '/assets/',
+          readOnly: true,
+          score: function() {
+                return $(this).attr('data-score');
+        }
+      });
   });
 </script>
+

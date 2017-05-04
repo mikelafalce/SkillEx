@@ -8,4 +8,12 @@ class Skill < ApplicationRecord
   def self.search(search)
     where("title LIKE ? OR description LIKE ?", "%#{search}%", "%#{search}%")
   end
+
+  def average_rating
+    ratings_array = self.lessons.pluck(:student_rating_teacher)
+    if ratings_array.length == 0
+      return nil
+    end
+    ratings_array.sum / ratings_array.length
+  end
 end
