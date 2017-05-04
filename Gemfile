@@ -16,6 +16,9 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', github: "rails/sass-rails"
 
 gem 'figaro'
+
+gem 'fog'
+
 gem "letter_opener", :group => :development
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
