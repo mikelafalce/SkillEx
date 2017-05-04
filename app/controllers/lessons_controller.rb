@@ -57,7 +57,6 @@ class LessonsController < ApplicationController
       UserMailer.completed_lesson_notice(@lesson).deliver_now!
       redirect_to upcoming_lessons_path, notice: 'Lesson was successfully completed.'
 
-      redirect_to root_path   
     elsif current_user == @lesson.student
       @lesson.student_rating_teacher = lesson_params[:rating].to_i
       @lesson.student_reviewing_teacher = lesson_params[:review]
@@ -66,7 +65,6 @@ class LessonsController < ApplicationController
       UserMailer.completed_lesson_notice(@lesson).deliver_now!
       redirect_to upcoming_lessons_path, notice: 'Lesson was successfully completed.'
       
-      redirect_to root_path
     end
   end
 

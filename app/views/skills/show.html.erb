@@ -28,7 +28,7 @@
     </div>
     <div class='row'>
       <div><h3>Description:</h3></div>
-      <div style='width: 80%'><%= @skill.description %></div><br>
+      <div style='width: 80%'><%= simple_format(@skill.description) %></div><br>
     </div>
   </div>
   <h3>
@@ -45,5 +45,5 @@
   <%end%>
   <%= 'Looks like nobody has left a review yet.' if @reviewed_lessons.count == 0 %>
 
-
+  <br /><br /><br /><br /><br />
 </div>
