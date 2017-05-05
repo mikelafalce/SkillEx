@@ -30,7 +30,7 @@ var MessengerWindow = React.createClass({
     //activate id in messages.js
     this.setState({
       messages: App.messenger ? App.messenger.messages : [],
-      messagesById: App.messenger.messages[this.state.recipientId]
+      messagesById: App.messenger.messages[this.state.recipientId] || []
     })
     this.refs.scrollWindow.scrollTop = 1000000000
   },
