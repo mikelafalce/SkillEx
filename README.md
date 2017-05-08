@@ -18,7 +18,7 @@ $ rails db:create && rails db:migrate && rails db:seed <br/>
 
 Add the following 2 lines to a `.env` file:
 
-AWS_ACCESS_KEY=<your access key>
+AWS_ACCESS_KEY=<your access key> <br>
 AWS_SECRET_KEY=<your secret key>
 
 $ foreman start -f Procfile.dev
